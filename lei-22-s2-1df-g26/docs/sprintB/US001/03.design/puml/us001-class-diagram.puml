@@ -1,0 +1,82 @@
+@startuml
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+
+skinparam classAttributeIconSize 0
+
+class DisplayPropertiesUI {
+}
+
+class DisplayPropertiesController {
+    + DisplayPropertiesController(PropertyCategoryRepository, AnnouncementCategoryRepository)
+    - getAnnouncementCategoryByDescription(announcementCategoryDescription)
+    - getPropertyCategoryByDescription(propertyCategoryDescription)
+}
+
+class Repositories {
+    - Repositories()
+    + getInstance(): Repositories
+    + getAnnouncementCategoyRepository()
+    + getPropertyCategoryRepository()
+}
+
+class AnnouncementCategory {
+    - String description
+    + AnnouncementCategory(description)
+}
+
+class PropertyCategory {
+    - String description
+    + PropertyCategory(description)
+}
+
+class AnnouncementCategoryRepository {
+    +getAnnouncementCategoryByDescription(announcementCategoryDescription))
+}
+
+class PropertyCategoryRepository {
+    +getPropertyCategoryByDescription(propertyCategoryDescription)
+}
+
+note left of AnnouncementCategoryRepository {
+    - used for displaying announcement category list
+}
+
+
+note right of PropertyCategoryRepository {
+    - used for displaying property category list
+}
+
+class AnnouncementHandling {
+    - announcementsList
+    + addAgencyAnnouncementList(agencyAnnouncementList)
+    + filterAnnouncements(announcementsList, propertyCategory, announcementCategory, numberOfRooms)
+    + sortAnnouncementsByDefault(announcementsList)
+    + sortAnnouncementsBySelectedData(displaybleAnnouncementList, selectedSorting)
+}
+
+class Announcement {
+    + Announcement (adress, announcementCategory, propertyCategory, commission, publicationDate, photoList)
+}
+
+DisplayPropertiesUI .> DisplayPropertiesController
+
+DisplayPropertiesController ..> Repositories
+DisplayPropertiesController ..> AnnouncementCategoryRepository
+DisplayPropertiesController ..> PropertyCategoryRepository
+DisplayPropertiesController ..> AnnouncementCategory
+DisplayPropertiesController ..> PropertyCategory
+
+AnnouncementCategoryRepository "1" --> "3" AnnouncementCategory
+PropertyCategoryRepository "1" --> "3" PropertyCategory
+
+AnnouncementCategoryRepository "1" <- Repositories
+Repositories -> "1" PropertyCategoryRepository
+
+Announcement "1" --> "1" AnnouncementCategory
+Announcement "1" --> "1" PropertyCategory
+Announcement "*" -- "1" AnnouncementHandling : < sorts and validates
+
+@enduml

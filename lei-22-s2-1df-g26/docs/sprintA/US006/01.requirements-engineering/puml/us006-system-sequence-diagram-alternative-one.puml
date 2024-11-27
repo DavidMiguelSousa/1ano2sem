@@ -1,0 +1,33 @@
+@startuml
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - US006
+
+autonumber
+
+actor "System Administrator" as Admin
+participant ":System" as System
+
+activate Admin
+
+        Admin -> System : requests to add (specify) an item to a list of a certain category (states, districts, cities)
+    activate System
+
+        System --> Admin : requests data (name of state, district or city)
+    deactivate System
+
+        Admin -> System : types requested data
+    activate System
+
+        System --> Admin : shows data and requests confirmation
+    deactivate System
+
+        Admin -> System : confirms data
+    activate System
+
+        System --> Admin : displays operation success
+    deactivate Admin
+
+
+@enduml

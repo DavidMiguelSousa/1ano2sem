@@ -1,0 +1,210 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "Agent" as Agent
+participant ":PublishAnnouncementUI" as UI
+participant ":PublishAnnouncementController" as Controller
+participant "Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as RepositoryInstance
+participant "propertyCategoryRepository\n:PropertyCategoryRepository" as PropertyCategoryRepository
+participant "announcementCategoryRepository\n:AnnouncementCategoryRepository" as AnnouncementCategoryRepository
+participant ":ApplicationSession" as ApplicationSession
+participant "appSession\n:ApplicationSession" as AppSession
+participant "currentSession\n:UserSession" as CurrentSession
+participant "agencyRepository\n:AgencyRepository" as AgencyRepository
+participant "agency\n:Agency" as Agency
+participant "announcement\n:Announcement" as Announcement
+
+activate Agent
+
+    Agent -> UI : asks to publish a sale announcement
+    activate UI
+
+            UI --> Controller** : create
+
+            UI --> Controller : getPropertyCategories()
+            activate Controller
+
+                Controller -> RepositorySingleton : getInstance()
+                activate RepositorySingleton
+
+                RepositorySingleton --> Controller: repositories
+                deactivate RepositorySingleton
+
+                Controller -> RepositoryInstance : getPropertyCategoryRepository()
+                activate RepositoryInstance
+
+                RepositoryInstance -> Controller : propertyCategoryRepository
+                deactivate RepositoryInstance
+
+                Controller -> PropertyCategoryRepository : getPropertyCategoryList()
+                activate PropertyCategoryRepository
+
+                PropertyCategoryRepository --> Controller : propertyCategoryList
+                deactivate PropertyCategoryRepository
+
+            Controller --> UI : propertyCategoryList
+            deactivate Controller
+
+    UI --> Agent : shows property category list (apartment, house or land) and asks to select one
+    deactivate UI
+
+     Agent -> UI : selects a property category
+     activate UI
+
+            UI --> UI : keepPropertyCategory(propertyCategoryDescription)
+
+            UI --> Controller : getAnnouncementCategories()
+            activate Controller
+
+                Controller -> RepositorySingleton : getInstance()
+                            activate RepositorySingleton
+
+                                RepositorySingleton --> Controller: repositories
+                            deactivate RepositorySingleton
+
+                            Controller -> RepositoryInstance : getAnnouncementCategoryRepository()
+                            activate RepositoryInstance
+
+                                RepositoryInstance --> Controller: announcementCategoryRepository
+                            deactivate RepositoryInstance
+
+                            Controller -> AnnouncementCategoryRepository : getAnnouncementCategories()
+                            activate AnnouncementCategoryRepository
+
+                                AnnouncementCategoryRepository --> Controller : announcementCategoryList
+                            deactivate AnnouncementCategoryRepository
+
+
+
+
+
+
+            Controller --> UI : announcementCategoryList
+            deactivate Controller
+
+     UI --> Agent : shows announcement category list (sale or rental) and asks to select one
+     deactivate UI
+
+     Agent -> UI : selects the sale announcement category
+     activate UI
+
+            UI --> UI : keepAnnouncementCategory(announcementCategoryDescription)
+
+     UI --> Agent : requests data
+     deactivate UI
+
+     Agent -> UI : types requested data (property charactheristics, requested price, commission)
+     activate UI
+
+        UI --> UI : keepAnnouncementData(data)
+
+     UI --> Agent : shows all data and requests confirmation
+     deactivate UI
+
+     Agent -> UI : confirms
+     activate UI
+
+        UI -->  Controller : publish(data)
+        activate Controller
+
+        Controller -> RepositorySingleton : getInstance()
+         activate RepositorySingleton
+
+        RepositorySingleton --> Controller: repositories
+        deactivate RepositorySingleton
+
+        Controller -> RepositoryInstance : getPropertyCategoryRepository()
+        activate RepositoryInstance
+
+        RepositoryInstance -> Controller : propertyCategoryRepository
+        deactivate RepositoryInstance
+
+        Controller -> PropertyCategoryRepository : getPropertyCategoryByDescription(propertyCategoryDescription)
+        activate PropertyCategoryRepository
+
+        PropertyCategoryRepository -> Controller : propertyCategory
+        deactivate PropertyCategoryRepository
+
+        Controller -> RepositoryInstance : getAnnouncementCategoryRepository()
+        activate RepositoryInstance
+
+        RepositoryInstance -> Controller : announcementCategoryRepository
+        deactivate RepositoryInstance
+
+        Controller -> AnnouncementCategoryRepository : getAnnouncementCategoryByDescription(announcementCategoryDescription)
+        activate AnnouncementCategoryRepository
+
+        AnnouncementCategoryRepository -> Controller : announcementCategory
+        deactivate AnnouncementCategoryRepository
+
+        Controller --> ApplicationSession : getInstance()
+        activate ApplicationSession
+
+        ApplicationSession --> Controller : appSession
+        deactivate ApplicationSession
+
+        Controller --> AppSession : getCurrentSession()
+        activate AppSession
+
+        AppSession --> Controller : getCurrentSession()
+        deactivate AppSession
+
+        Controller --> CurrentSession : id = getUserID()
+        activate CurrentSession
+
+        CurrentSession --> Controller : id
+        deactivate CurrentSession
+
+        Controller --> RepositorySingleton : getAgencyRepository(id)
+        activate RepositorySingleton
+
+        RepositorySingleton --> Controller : agencyRepository
+        deactivate RepositorySingleton
+
+        Controller --> AgencyRepository : getAgencyByAgentEmail(email)
+        activate AgencyRepository
+
+        loop for each agency
+            AgencyRepository -> Agency : anyAgentHasEmail(email)
+            activate Agency
+
+            Agency --> AgencyRepository : true/false
+            deactivate Agency
+        end
+
+        AgencyRepository --> Controller : agency
+        deactivate AgencyRepository
+
+        Controller --> Agency : getUserByEmail(email)
+        activate Agency
+
+        Agency --> Controller : agent
+        deactivate Agency
+
+        Controller --> Agency : publishAnnouncement(data)
+        activate Agency
+
+        Agency --> Announcement** : publishAnnouncement(data)
+
+        Agency -> Agency : addAnnouncement(announcement)
+
+        Agency -> Agency : validateAnnouncement(announcement)
+
+        Agency --> Controller : announcement
+        deactivate Agency
+
+        Controller --> UI : announcement
+        deactivate Controller
+
+     UI --> Agent : informs operations success
+     deactivate UI
+
+deactivate Agent
+
+@enduml

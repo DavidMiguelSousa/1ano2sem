@@ -1,0 +1,82 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+
+skinparam classAttributeIconSize 0
+
+'left to right direction
+
+class Repositories{
+-Repositories()
++getInstance() : Repositories
++getAgencyRepository()
++getStateRepository()
++getCityRepository()
+}
+
+class AgencyRepository {
++ getAgencies()
++ createAgency(location,id, designation, phone, email)
++validateAgency(Agency)
++add(Agency)
+}
+
+class StateRepository {
++ getStates()
+}
+class CityRepository {
++ getCities(state)
+}
+
+
+
+class Location{
++String location
+}
+
+
+
+class CreateAgencyController {
+    + getAgencies()
+    + createAgency(location,id, designation, phone, email)
+    +createLocation(city,state,streetaddress, zipcode)
+    + getStates()
+    + getCities(state)
+}
+
+class CreateAgencyUI {
+}
+class LocationRepository{
+    +createLocation(city,state,streetaddress, zipcode)
+}
+
+Repositories -> Repositories : instance
+
+CreateAgencyUI .> CreateAgencyController
+
+CreateAgencyController .> Repositories : repositories
+
+
+CreateAgencyController..> Location
+CreateAgencyController..> State
+CreateAgencyController..> City
+CreateAgencyController ..> Agency
+
+CreateAgencyController ..> LocationRepository : LocationRepository
+CreateAgencyController ..> AgencyRepository : AgencyRepository
+
+Repositories -> "1" LocationRepository
+Repositories -> "1" AgencyRepository
+Repositories -> "1" StateRepository
+Repositories -> "1" CityRepository
+
+LocationRepository "1" --> "*" Location : Location
+AgencyRepository "1" --> "*" Agency : Agency
+StateRepository "1" --> "*" State : State
+CityRepository "1" --> "*" City : City
+
+
+@enduml

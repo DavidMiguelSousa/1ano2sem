@@ -1,0 +1,291 @@
+@startuml
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+skinparam classAttributeIconSize 0
+
+class Repositories {
+    - Repositories()
+    + getInstance(): Repositories
+    + getBusinessCategoryRepository()
+}
+
+class DisplayPropertiesUI {
+}
+
+class DisplayPropertiesController {
+    + DisplayPropertiesController(announcementCategory, propertyCategory)
+    - getAnnouncementCategoryByDescription(announcementCategoryDescription)
+    - getPropertyCategoryByDescription(propertyCategoryDescription)
+}
+
+class PropertyCategory {
+    - String propertyCategoryDescription
+    + PropertyCategory(propertyCategoryDescription)
+}
+
+class AnnouncementCategory {
+    - String announcementCategoryDescription
+    + AnnouncementCategory(announcementCategoryDescription)
+}
+
+class PropertyCategoryRepository {
+    +getPropertyCategoryByDescription()
+}
+
+class AnnouncementCategoryRepository {
+    +getAnnouncementCategoryByDescription()
+}
+
+class AnnouncementHandling {
+    - announcementsList
+    + addAgencyAnnouncementList(agencyAnnouncementList)
+    + filterAnnouncements(announcementsList, propertyCategory, announcementCategory, numberOfRooms)
+    + sortAnnouncementsByDefault(announcementsList)
+    + sortAnnouncementsBySelectedData(displaybleAnnouncementList, selectedSorting)
+}
+
+class PublishAnnouncementUI {}
+
+class PublishAnnouncementController {
++PublishAnnouncementController(AnnouncementCategoryRepository, PropertyCategoryRepository, AgencyRepository)
++publishAnnouncement()
+-getAnnouncementCategoryByDescription(announcementCategoryDescription)
+-getPropertyCategoryByDescription(propertyCategoryDescription)
+-getAgencyByDescription(agencyDescription)
+}
+
+class AgencyRepository {
++getAgencyByDesignation()
+}
+
+class SaleRequest {
+-Double requestedPrice
+}
+
+class RentRequest {
+-double monthlyPayment
+-int contractDuration
+}
+class RegisterEmployeeUI{
+RegisterEmployeeController ctrl
+}
+
+class RegisterEmployeeController{
+EmployeeRepository employeeRepo
+}
+
+class Employee{
+-phone
+-taxNumber
+-address
+-passport
+}
+
+class Passport {
+}
+
+class EmployeeRepository{
+}
+
+class AuthenticationRepository{
+}
+class Repositories{
+}
+
+class ApplicationSession
+{
++ static getInstance()
++ getCurrentSession()
+}
+
+class UserSession
+{
++ getUserEmail()
+}
+
+class Address {
+-street
+-city
+-district
+-state
+-zipCode
+
++Adress(street, city, district, state, zipCode)
+}
+
+class Commission {
+-id
+}
+
+class Agent {
+-phoneNumber
+-taxNumber
+-passportNumber
+}
+
+class Announcement {
+-String publicationDate
+
++Announcement(Address, AnnouncementCategory, PropertyCategory, Commission, publicationDate)
+}
+
+class Agency {
+-String designation
+-String email
+-int phoneNumber
+
+-addAnnouncement(announcement)
+-validateAnnouncement(announcement)
++Agency()
+-publishAnnouncement()
+}
+
+class RequestAnnouncementUI {}
+
+class RequestAnnouncementController {
++RequestAnnouncementController(AnnouncementCategoryRepository, PropertyCategoryRepository, AgencyRepository)
++submitRequest()
+-getAnnouncementCategoryByDescription(announcementCategoryDescription)
+-getPropertyCategoryByDescription(propertyCategoryDescription)
+-getAgencyByDescription(agencyDescription)
+-getAgentByDescription(agentDescription)
+}
+
+class LocationRepository {
++getLocations()
+}
+
+class Location{
++String location
+}
+
+class AgencyRepository{
+-Adress address
+-boolean storesLocationExists
++getAgencyByDesignation()
++checkStoresLocation(stateAbbreviation)
++findStoresLocation(stateAbbreviation)
+}
+
+class SpecifyLocationUI{}
+
+class SpecifyLocationController{
+-AgencyRepository agencyRepository
+-SpecifyLocationUI specifyLocationUI;
+-String stateAbbreviation
++checkStoresLocation(stateAbbreviation)
++findStoresLocation(stateAbbreviation)
+}
+
+class UserRepository{
+-String name
+-String email
+-String password
++registerUser(name, email, password)
+}
+
+class SystemRegisterUI{}
+
+class SystemRegisterController{
++keepData(name, email, password)
++registerUser(name, email, password)
+}
+
+Repositories -> Repositories : instance
+Repositories ---> "1" AgencyRepository
+Repositories ---> "1" AnnouncementCategoryRepository
+Repositories ---> "1" PropertyCategoryRepository
+Repositories ---> "1" EmployeeRepository
+Repositories ---> "1" AuthenticationRepository
+Repositories ---> "1" StateRepository
+Repositories ---> "1" CityRepository
+
+AgencyRepository "1" --> "*" Agency
+AnnouncementCategoryRepository "1" --> "2" AnnouncementCategory
+PropertyCategoryRepository "1" --> "3" PropertyCategory
+LocationRepository "1" --> "*" Location
+EmployeeRepository "1" --> "*" Employee
+StateRepository "1" --> "*" State
+CityRepository "1" --> "*" City
+
+DisplayPropertiesUI ..> DisplayPropertiesController
+
+DisplayPropertiesController ..> Repositories : repositories
+DisplayPropertiesController ..> AnnouncementCategoryRepository
+DisplayPropertiesController ..> PropertyCategoryRepository
+DisplayPropertiesController ..> AnnouncementCategory
+DisplayPropertiesController ..> PropertyCategory
+
+Announcement "1" --> "1" AnnouncementCategory
+Announcement "1" --> "1" PropertyCategory
+Announcement "*" -- "1" AnnouncementHandling : < sorts and validates
+Announcement "1..*" --> "1" Agent : published by
+Announcement "1" *- "1" Address
+Announcement "1" *- "1" Commission
+Announcement <|-- SaleRequest
+Announcement <|-- RentRequest
+
+Agency "1" --> "*" Announcement : > publishes
+Agency "1" --> "*" Agent : > employs
+
+Agent "1" *- "1" Address : > has an
+
+PublishAnnouncementUI ..> PublishAnnouncementController
+
+PublishAnnouncementController ..> Repositories : repositories
+PublishAnnouncementController ..> PropertyCategoryRepository
+PublishAnnouncementController ..> AnnouncementCategoryRepository
+PublishAnnouncementController ..> AgencyRepository
+PublishAnnouncementController ..> AnnouncementCategory
+PublishAnnouncementController ..> PropertyCategory
+PublishAnnouncementController ..> ApplicationSession
+PublishAnnouncementController ..> UserSession
+
+ApplicationSession --> ApplicationSession : instance
+ApplicationSession --> UserSession
+
+RegisterEmployeeUI ..> RegisterEmployeeController
+
+RegisterEmployeeController ..> Repositories : repositories
+RegisterEmployeeController ..> EmployeeRepository
+RegisterEmployeeController ..> AgencyRepository
+RegisterEmployeeController ..> AuthenticationRepository
+
+Employee *-- Passport
+Employee *-- Location
+Employee --o Agency
+
+Owner "1" --> "*" Agent : chooses
+
+RequestAnnouncementUI ..> RequestAnnouncementController
+
+RequestAnnouncementController ..> Repositories : repositories
+RequestAnnouncementController ..> PropertyCategoryRepository
+RequestAnnouncementController .> AnnouncementCategoryRepository
+RequestAnnouncementController ..> AgencyRepository
+RequestAnnouncementController ..> AnnouncementCategory
+RequestAnnouncementController ..> PropertyCategory
+RequestAnnouncementController ..> ApplicationSession
+RequestAnnouncementController ..> UserSession
+
+CreateAgencyUI ..> CreateAgencyController
+
+CreateAgencyController ..> Repositories : repositories
+CreateAgencyController ..> Location
+CreateAgencyController ..> Agency
+CreateAgencyController ..> LocationRepository
+CreateAgencyController ..> AgencyRepository
+
+SpecifyLocationUI ..> SpecifyLocationController
+
+SpecifyLocationController ..> Repositories : repositories
+SpecifyLocationController ..> AgencyRepository
+
+SystemRegisterUI ..> SystemRegisterController
+
+SystemRegisterController ..> Repositories : repositories
+SystemRegisterController ..> UserRepository
+
+@enduml

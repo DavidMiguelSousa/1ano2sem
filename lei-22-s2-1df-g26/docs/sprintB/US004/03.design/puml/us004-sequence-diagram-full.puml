@@ -1,0 +1,279 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "Owner" as OWN
+participant ":RequestAnnouncementUI" as UI
+participant ":RequestAnnouncementController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "propertyCategoryRepository:\nPropertyCategoryRepository" as PropertyCategoryRepository
+participant "announcementCategoryRepository:\nAnnouncementCategoryRepository" as AnnouncementCategoryRepository
+participant "agencyRepository:\nAgencyRepository" as AgencyRepository
+participant "agency\n:Agency" as Agency
+participant "announcement\n:announcement" as Announcement
+
+activate OWN
+
+        OWN -> UI : asks to submit a request to listing a property
+        activate UI
+
+        UI -> CTRL** : create
+
+        UI -> CTRL : getPropertyCategoryList()
+        activate CTRL
+
+            CTRL -> RepositorySingleton : getInstance()
+            activate RepositorySingleton
+
+            RepositorySingleton --> CTRL: repositories
+            deactivate RepositorySingleton
+
+            CTRL -> PLAT : getPropertyCategoryRepository()
+            activate PLAT
+
+                PLAT --> CTRL: propertyCategoryRepository
+            deactivate PLAT
+
+            CTRL -> PropertyCategoryRepository : getPropertyCategoryList()
+            activate PropertyCategoryRepository
+
+                PropertyCategoryRepository --> CTRL : propertyCategoryList
+            deactivate PropertyCategoryRepository
+
+            CTRL --> UI : propertyCategoryList
+        deactivate CTRL
+
+        UI --> OWN : shows property  category list (apartment, house or land) and asks to select one
+        deactivate UI
+
+        OWN -> UI : selects a property category
+        activate UI
+
+            UI --> UI : keepPropertyCategory(propertyCategoryDescription)
+
+        UI -> CTRL : getAnnouncementCategoryList()
+        activate CTRL
+
+            CTRL -> RepositorySingleton : getInstance()
+            activate RepositorySingleton
+
+            RepositorySingleton --> CTRL: repositories
+            deactivate RepositorySingleton
+
+            CTRL -> PLAT : getAnnouncementCategoryRepository()
+            activate PLAT
+
+            PLAT --> CTRL: announcementCategoryRepository
+            deactivate PLAT
+
+            CTRL -> AnnouncementCategoryRepository : getAnnouncementCategoryList()
+            activate AnnouncementCategoryRepository
+
+            AnnouncementCategoryRepository --> CTRL : announcementCategoryList
+            deactivate AnnouncementCategoryRepository
+
+        CTRL --> UI : announcementCategoryList
+        deactivate CTRL
+
+        UI --> OWN : shows announcement category list (sale or rental) and asks to select one
+        deactivate UI
+
+alt selects sale
+
+        OWN -> UI : selects sale
+        activate UI
+
+        UI --> OWN : requests price
+        deactivate UI
+
+        OWN -> UI : introduces price
+        activate UI
+
+            UI --> UI : keepRequestPrice(price)
+
+else selects rental
+
+        OWN -> UI : selects rental
+        activate UI
+
+        UI --> OWN : requests rent
+        deactivate UI
+
+        OWN -> UI : introduces monthly rent
+        activate UI
+
+            UI --> UI : keepRequestRent(rent)
+
+end
+loop
+        UI --> OWN : requests photographs
+        deactivate UI
+
+        OWN -> UI : introduces the URI of photographs
+        activate UI
+
+            UI --> UI : keepRequestPhotographs(photographs)
+break
+
+        OWN -> UI : introduces a number
+        activate UI
+
+end
+end
+
+        UI --> OWN : requests information
+        deactivate UI
+
+        OWN -> UI : introduces requested information (property charactheristics, address)
+        activate UI
+
+        UI --> UI : keepPropertyInformation(information)
+
+        UI -> CTRL : getAgencyList()
+        activate CTRL
+
+            CTRL -> RepositorySingleton : getInstance()
+            activate RepositorySingleton
+
+            RepositorySingleton --> CTRL: repositories
+            deactivate RepositorySingleton
+
+            CTRL -> PLAT : getAgencyRepository()
+            activate PLAT
+
+            PLAT --> CTRL: agencyRepository
+            deactivate PLAT
+
+            CTRL -> AgencyRepository : getAgencyList()
+            activate AgencyRepository
+
+            AgencyRepository --> CTRL : agencyList
+            deactivate AgencyRepository
+
+        CTRL --> UI : agencyList
+        deactivate CTRL
+
+        UI --> OWN : shows list of all agencies and asks to select one
+        deactivate UI
+
+        OWN -> UI :chooses an agency from the list
+        activate UI
+
+        UI --> UI : keepAgency(id)
+
+        UI -> CTRL : getAgentList(id)
+        activate CTRL
+
+            CTRL -> RepositorySingleton : getInstance()
+            activate RepositorySingleton
+
+            RepositorySingleton --> CTRL: repositories
+            deactivate RepositorySingleton
+
+            CTRL -> PLAT : getAgencyRepository(id)
+            activate PLAT
+
+            PLAT --> CTRL: agencyRepository
+            deactivate PLAT
+
+            CTRL -> AgencyRepository : getAgentList(id)
+            activate AgencyRepository
+
+            AgencyRepository --> CTRL : agentList
+            deactivate AgencyRepository
+
+            CTRL --> UI : agentList
+            deactivate CTRL
+
+        UI --> OWN : shows list of agents available that work on the selected agency and asks to select one
+        deactivate UI
+
+        OWN -> UI : chooses an agent from the list
+        activate UI
+
+        UI --> UI : keepAgent(agent)
+
+        UI --> OWN : shows all data and request confirmation
+        deactivate UI
+
+        OWN -> UI : confirms
+        activate UI
+
+        UI -->  CTRL : submitRequest()
+                activate CTRL
+
+                CTRL -> RepositorySingleton : getInstance()
+                 activate RepositorySingleton
+
+                RepositorySingleton --> CTRL: repositories
+                deactivate RepositorySingleton
+
+                CTRL -> PLAT : getPropertyCategoryRepository()
+                activate PLAT
+
+                PLAT -> CTRL : propertyCategoryRepository
+                deactivate PLAT
+
+                CTRL -> PropertyCategoryRepository : getPropertyCategoryByDescription(propertyCategoryDescription)
+                activate PropertyCategoryRepository
+
+                PropertyCategoryRepository -> CTRL : propertyCategory
+                deactivate PropertyCategoryRepository
+
+                CTRL -> PLAT : getAnnouncementCategoryRepository()
+                activate PLAT
+
+                PLAT -> CTRL : announcementCategoryRepository
+                deactivate PLAT
+
+                CTRL -> AnnouncementCategoryRepository : getAnnouncementCategoryByDescription(announcementCategoryDescription)
+                activate AnnouncementCategoryRepository
+
+                AnnouncementCategoryRepository -> CTRL : announcementCategory
+                deactivate AnnouncementCategoryRepository
+
+                CTRL -> PLAT : getAgencyRepository(id)
+                activate PLAT
+
+                PLAT -> CTRL : agencyRepository
+                deactivate PLAT
+
+                CTRL -> AgencyRepository : getAgencyByDesignation(designation)
+                activate AgencyRepository
+
+                AgencyRepository -> CTRL : agency
+                deactivate AgencyRepository
+
+                CTRL -> AgencyRepository : getAgentByEmail(email)
+                activate AgencyRepository
+
+                AgencyRepository -> CTRL : agent
+                deactivate AgencyRepository
+
+                 CTRL --> Agency : submitRequest(information, agent)
+                 activate Agency
+
+                 Agency --> Announcement** : submitRequest(information, agent)
+
+                 Agency -> Agency : addRequest(request)
+
+                 Agency -> Agency : validateRequest(request)
+
+                 Agency --> CTRL : request
+                 deactivate Agency
+
+                 CTRL --> UI : request
+                 deactivate CTRL
+
+        UI --> OWN : informs operation succcess
+        deactivate UI
+
+
+
+deactivate OWN
+@enduml

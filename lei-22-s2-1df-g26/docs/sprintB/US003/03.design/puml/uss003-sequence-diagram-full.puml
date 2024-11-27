@@ -1,0 +1,164 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "Administrator" as ADM
+participant ": RegisterEmployeeUI" as UI
+participant ": RegisterEmployeeController" as Controller
+participant ": Repositories" as Repo
+participant ": AgencyRepository" as AgencyRepo
+participant ": EmployeeRepository" as EmployeeRepository
+participant ": AuthenticationRepository" as auth
+participant ": Employee" as Employee
+
+activate ADM
+ADM -> UI :  starts the registration of a new Employee
+activate UI
+UI --> ADM : requests data (name, Passport, taxNumber, email, phoneNumber)
+deactivate UI
+ADM -> UI : types requested data
+activate UI
+
+opt admin wants to specify location
+
+UI --> ADM : asks for employee's state
+deactivate UI
+
+ADM -> UI : type employee's state
+activate UI
+
+UI --> ADM : asks for employee's city
+deactivate UI
+
+ADM -> UI : types employee's city
+activate UI
+
+UI --> ADM : asks for employee's street
+deactivate UI
+
+ADM -> UI : types employee's street
+activate UI
+
+UI --> ADM : asks for employee's zip code
+deactivate UI
+
+ADM -> UI : types employee's zip code
+activate UI
+
+UI --> ADM : asks if admin wants to add a district
+deactivate UI
+
+ADM -> UI : yes or no answer
+activate UI
+
+opt admin wants to add district
+
+UI --> ADM : asks for employee's district
+deactivate UI
+ 
+ADM -> UI : type employee's district
+activate UI
+
+end opt
+
+end opt
+
+
+
+UI -> Controller : getAgencies()
+activate Controller
+
+
+Controller -> AgencyRepo : getAgencies()
+activate AgencyRepo
+
+AgencyRepo --> Controller : agencies
+deactivate AgencyRepo
+
+Controller --> UI : agencies
+deactivate Controller
+
+UI --> ADM : shows list of existing agencies
+deactivate UI
+
+ADM -> UI : selects an agency
+activate UI
+
+UI --> ADM : shows roles
+deactivate UI
+
+ADM -> UI : chooses the role
+activate UI
+
+
+UI -> Controller : create(email, name, position, \nphoneNumber, passportNumber, \npassportDateOfIssue, passportDateOfExpiry, \nstate, city, district, street, zipCode, taxNumber, \nstoreAddress)
+activate Controller
+
+
+Controller -> EmployeeRepository : create(email, name, position, \nphoneNumber, passportNumber, \npassportDateOfIssue, passportDateOfExpiry, \nstate, city, district, street, zipCode, taxNumber, \nstoreAddress)
+activate EmployeeRepository
+
+EmployeeRepository -> Passport** : create(passportNumber, passportDateOfIssue, passportDateOfExpiry)
+
+alt location was provided
+
+EmployeeRepository -> Location** : create(state, city, district, street, zipCode)
+
+else location was not provided
+
+EmployeeRepository -> Location** : null
+
+end alt
+
+EmployeeRepository -> Employee** : create(email, name, phoneNumber, employeePassport, employeeAddress, taxNumber, role)
+
+EmployeeRepository -> EmployeeRepository : validateEmployee(emp)
+
+
+EmployeeRepository --> Controller : emp
+deactivate EmployeeRepository
+
+
+Controller --> UI : emp
+deactivate Controller
+
+UI --> ADM : shows data and asks for a confirmation
+deactivate UI
+
+ADM -> UI : confirms
+activate UI
+
+UI -> Controller : save()
+activate Controller
+
+Controller -> PasswordGenerator : passwordGenerated = generate()
+activate PasswordGenerator
+deactivate PasswordGenerator
+
+Controller -> auth : addUserWithRole(emp.getName(), emp.getEmail(), passwordGenerated, emp.getRole())
+activate auth
+deactivate auth
+
+Controller -> EmployeeRepository : save(emp)
+activate EmployeeRepository
+
+EmployeeRepository -> EmployeeRepository : validateEmployee(emp)
+
+EmployeeRepository -> EmployeeRepository : add(emp)
+
+EmployeeRepository --> Controller : emp
+deactivate EmployeeRepository
+
+Controller --> UI : emp
+deactivate Controller
+
+UI --> ADM : new employee registered with success
+
+deactivate UI
+deactivate ADM
+
+@enduml

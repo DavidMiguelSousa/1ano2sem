@@ -1,0 +1,145 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "Administrator" as ADM
+participant ":CreateAgencyUI" as UI
+participant ":CreateAgencyController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "agencyRepository:\nAgencyRepository" as AgencyRepository
+participant "stateRepository\n:StateRepository" as stateRepository
+participant "cityRepository\n:CityRepository" as cityRepository
+
+activate ADM
+
+        ADM -> UI : asks to register a store
+
+
+        activate UI
+        UI->CTRL**:create()
+        UI -> CTRL : getAgencies()
+        activate CTRL
+
+            CTRL -> RepositorySingleton : getInstance()
+            activate RepositorySingleton
+            RepositorySingleton -> CTRL : repositories
+            deactivate RepositorySingleton
+
+            CTRL -> PLAT : getAgencyRepository()
+            activate PLAT
+
+            PLAT --> CTRL: AgencyRepository
+            deactivate PLAT
+
+            CTRL -> AgencyRepository : getAgencies()
+            activate AgencyRepository
+
+            AgencyRepository --> CTRL : agencyList
+            deactivate AgencyRepository
+            CTRL --> UI : agencyList
+        deactivate CTRL
+        UI --> ADM : shows agency list and asks to input store info \n(id, designation/name, phone, email)
+        deactivate UI
+
+        ADM -> UI : types store info
+        activate UI
+
+        UI --> ADM : shows store info, asks to confirm
+        deactivate UI
+        ADM -> UI : confirms
+        activate UI
+                UI -> CTRL : getStates()
+                activate CTRL
+                    Note right of CTRL
+                        Could have been used A REF here (Us005-sequence-diagram-partial-getStates)
+                        but was not used because at the time the US Related to the creation of States was not done
+                         yet, the partial SD was made to show that Refs were understood and can be checked in the design folder
+                    end note
+                    CTRL -> PLAT : getStatesRepository()
+                    activate PLAT
+
+                    PLAT --> CTRL: statesRepository
+                    deactivate PLAT
+
+                    CTRL -> stateRepository : getStates()
+                    activate stateRepository
+
+                    stateRepository --> CTRL : StatesList
+                    deactivate stateRepository
+                    CTRL --> UI : statesList
+                deactivate CTRL
+                     UI --> ADM : shows statesList and asks to choose a state
+                            deactivate UI
+
+        ADM -> UI : chooses a state
+        activate UI
+                        UI -> CTRL : getCities(state)
+                        activate CTRL
+                            Note right of CTRL
+                                Could have been used A REF here (Us005-sequence-diagram-partial-getCities)
+                                but was not used because at the time the US Related to the creation of States was not done
+                                yet, the partial SD was made to show that Refs were understood and can be checked in the design folder
+                            end note
+                            CTRL -> PLAT : getCitiesRepository()
+                            activate PLAT
+
+                            PLAT --> CTRL: citiesRepository
+                            deactivate PLAT
+
+                            CTRL -> cityRepository : getCities(state)
+                            activate cityRepository
+
+                            cityRepository --> CTRL : cityList
+                            deactivate cityRepository
+                            CTRL --> UI : cityList
+                        deactivate CTRL
+                             UI --> ADM : shows cityList,asks to choose a city,\n asks to input agency zipcode, street
+                                    deactivate UI
+        ADM -> UI : chooses a city and inputs zipcode, street
+        activate UI
+        Note right of CTRL
+            Location was created in the controller because at the time there was no repository for location,
+            locations were not saved, so creating the location in the repo was not viable
+        end note
+        UI->CTRL : createLocation(city,state,street, zipcode)
+        activate CTRL
+            CTRL-> location**: createLocation(city,state,street, zipcode)
+                deactivate locationRepository
+                    CTRL --> UI : location
+                    deactivate CTRL
+                    UI --> ADM : shows location, asks to confirm
+
+                deactivate UI
+        ADM -> UI : confirms
+        activate UI
+        UI -> CTRL : createAgency(location,id, designation, phone, email)
+        activate CTRL
+            CTRL-> AgencyRepository : createAgency(location,id, designation, phone, email)
+            activate AgencyRepository
+                AgencyRepository->Agency**: agency=createAgency(location,id, designation, phone, email)
+
+                     AgencyRepository-> AgencyRepository : validateAgency(agency)
+
+
+                        AgencyRepository -> AgencyRepository : add(agency)
+                     AgencyRepository --> CTRL : validationState
+                     deactivate AgencyRepository
+                        CTRL --> UI : validationState
+                     deactivate CTRL
+                        UI --> ADM : shows validationState
+
+
+
+
+
+
+    deactivate UI
+
+deactivate ADM
+
+@enduml

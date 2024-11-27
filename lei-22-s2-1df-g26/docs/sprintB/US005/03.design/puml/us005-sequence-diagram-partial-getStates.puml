@@ -1,0 +1,31 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+participant ":CreateStoreController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "stateRepository\n:StateRepository" as stateRepository
+
+-> CTRL : getStates()
+                activate CTRL
+
+                    CTRL -> PLAT : getStatesRepository()
+                    activate PLAT
+
+                    PLAT --> CTRL: statesRepository
+                    deactivate PLAT
+
+                    CTRL -> stateRepository : getStates()
+                    activate stateRepository
+
+                    stateRepository --> CTRL : StatesList
+                    deactivate stateRepository
+                    <--CTRL : statesList
+                deactivate CTRL
+
+@enduml

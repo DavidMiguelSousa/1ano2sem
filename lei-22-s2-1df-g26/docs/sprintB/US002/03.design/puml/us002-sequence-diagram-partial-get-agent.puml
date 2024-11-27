@@ -1,0 +1,69 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant ":CreateTaskController" as Controller
+participant ":ApplicationSession" as ApplicationSession
+participant "appSession\n:ApplicationSession" as AppSession
+participant "currentSession\n:UserSession" as CurrentSession
+participant "repositories\n:Repositories" as RepositoryInstance
+participant "agencyRepository:\nAgencyRepository" as AgencyRepository
+participant "agency\n:Agency" as Agency
+
+autonumber 23
+-> Controller : getAgentFromSession()
+autonumber 23.1
+activate Controller
+
+    group Get Agent
+        Controller -> ApplicationSession: getInstance()
+        activate ApplicationSession
+
+            ApplicationSession -> Controller: appSession
+        deactivate ApplicationSession
+
+        Controller -> AppSession: getCurrentSession()
+        activate AppSession
+
+            AppSession --> Controller: currentSession
+        deactivate AppSession
+
+        Controller -> CurrentSession: email = getUserEmail()
+        activate CurrentSession
+
+            CurrentSession --> Controller: email
+        deactivate CurrentSession
+
+        Controller -> RepositoryInstance: getAgencyRepository(email)
+        activate RepositoryInstance
+
+            RepositoryInstance --> Controller: agencyRepository
+        deactivate RepositoryInstance
+
+        Controller -> AgencyRepository: getAgencyByAgentEmail(email)
+        activate AgencyRepository
+
+            loop for each agency
+                AgencyRepository -> Agency : anyAgentHasEmail(email)
+                activate Agency
+
+                     Agency --> AgencyRepository : true/false
+                deactivate Agency
+            end
+
+            AgencyRepository --> Controller : agency
+
+        deactivate AgencyRepository
+
+        Controller -> Agency: getAgentByEmail(email)
+        activate Agency
+
+            Agency --> Controller : agent
+        deactivate Agency
+    end
+    autonumber 24
+    <-- Controller : agent
+deactivate Controller
+
+@enduml

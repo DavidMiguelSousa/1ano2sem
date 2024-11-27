@@ -1,0 +1,39 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant ":RequestPropertyController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "agencyRepository:\nAgencyRepository" as AgencyRepository
+
+autonumber 34
+
+-> CTRL : getAgentByEmail()
+
+autonumber 34.1
+activate CTRL
+    group Get Agent Object
+
+            CTRL -> PLAT : getAgencyRepository(id)
+            activate PLAT
+
+            PLAT --> CTRL: agencyRepository
+            deactivate PLAT
+
+            CTRL -> AgencyRepository : getAgentByEmail(email)
+            activate AgencyRepository
+
+            AgencyRepository --> CTRL : agent
+            deactivate AgencyRepository
+
+    end
+    autonumber 35
+    <-- CTRL : agent
+    deactivate CTRL
+
+'hide footbox
+
+
+@enduml

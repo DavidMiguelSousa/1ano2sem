@@ -1,0 +1,63 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "Unregistered User" as UnregisteredUser
+participant ":SystemRegisterUI" as UI
+participant ":SystemRegisterController" as CTRL
+participant ":repositories" as RP
+participant "repositories\n:Repositories" as rRP
+participant "userRepository\n:UserRepository" as UserRepository
+
+activate UnregisteredUser
+
+        UnregisteredUser -> UI : requests to register in the system
+    activate UI
+
+        UI -> CTRL**: create system register controller
+
+        UI --> UnregisteredUser : requests data (name, email, password)
+    deactivate UI
+
+        UnregisteredUser -> UI : types requested data
+    activate UI
+
+        UI -> UI: keepData(data = (name, email, password))
+
+        UI --> UnregisteredUser : shows data and requests confirmation
+    deactivate UI
+
+        UnregisteredUser -> UI : confirms data
+    activate UI
+
+        UI -> CTRL: registerUser(data)
+        activate CTRL
+
+        CTRL -> RP: getInstance()
+        activate RP
+
+        RP --> CTRL: repositories
+        deactivate RP
+
+        CTRL -> rRP: getUserRepository()
+        activate rRP
+
+        rRP --> CTRL: UserRepository
+        deactivate rRP
+
+        CTRL -> UserRepository: registerUser(data)
+        activate UserRepository
+
+       UserRepository --> CTRL: operation successful
+        deactivate UserRepository
+
+        CTRL --> UI: operation successful
+        deactivate CTRL
+
+        UI --> UnregisteredUser : displays operation success
+    deactivate UI
+
+@enduml

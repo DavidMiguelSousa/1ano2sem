@@ -1,0 +1,46 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant ":RequestAnnouncementUI" as UI
+
+autonumber
+
+alt successfull case
+loop
+
+        <-- UI : requests photographs
+        deactivate UI
+
+        -> UI : introduces the URI of photographs
+        activate UI
+
+            UI --> UI : keepRequestPhotographs(photographs)
+break
+
+        -> UI : introduces a number
+        activate UI
+
+end
+
+else unsuccessfull case
+autonumber
+
+        --> UI : requests photographs
+        deactivate UI
+
+        -> UI : introduces the URI of photographs
+        activate UI
+
+            UI --> UI : keepRequestPhotographs(photographs)
+break
+
+        <- UI : invalid URI
+        deactivate UI
+
+end
+end
+end
+
+@enduml

@@ -1,0 +1,46 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+title US006 - Domain Model
+
+class SystemAdministrator {
+}
+
+class Locations {
+   name
+}
+
+class Category {
+}
+
+class State{
+}
+
+class District{
+}
+
+class City{
+}
+
+note right of Category
+    - description:
+        1 - state
+        2 - district
+        3 - city
+end note
+
+SystemAdministrator "1" -- "0..*" Locations : adds >
+Locations "1" - "1" Category : of >
+Category "1" -- "1..*" State
+State "1" -- "1..*" District
+District "1" -- "1..*" City
+Locations "*" -- "1" System : to >
+
+@enduml

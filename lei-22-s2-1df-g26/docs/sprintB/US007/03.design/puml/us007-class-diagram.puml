@@ -1,0 +1,37 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+
+skinparam classAttributeIconSize 10
+
+'left to right direction
+
+class SystemRegisterUI{}
+
+class SystemRegisterController{
++keepData(name, email, password)
++registerUser(name, email, password)
+}
+
+class Repositories{
+-Repositories()
++getInstance() : Repositories
++getUserRepository()
+}
+
+class UserRepository{
+-String name
+-String email
+-String password
++registerUser(name, email, password)
+}
+
+SystemRegisterUI -- SystemRegisterController
+SystemRegisterController -- "*" Repositories
+SystemRegisterController -- UserRepository
+
+
+@enduml

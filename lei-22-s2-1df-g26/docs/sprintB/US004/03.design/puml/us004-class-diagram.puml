@@ -1,0 +1,179 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+
+
+skinparam classAttributeIconSize 0
+
+class ApplicationSession
+{
++ static getInstance()
++ getCurrentSession()
+}
+
+class UserSession
+{
++ getUserEmail()
+}
+
+class Address {
+-street
+-city
+-district
+-state
+-zipCode
+
++Adress(street, city, district, state, zipCode)
+}
+
+class Commission {
+-id
+}
+
+class Agent {
+-phoneNumber
+-taxNumber
+-passportNumber
+}
+
+class Announcement {
+-String publicationDate
+
++Announcement(Address, AnnouncementCategory, PropertyCategory, Commission, publicationDate)
+}
+
+class Agency {
+-String designation
+-String email
+-int phoneNumber
+
+-addAnnouncement(announcement)
+-validateAnnouncement(announcement)
++Agency()
+-publishAnnouncement()
+}
+
+class RequestAnnouncementUI {
+
+
+}
+
+class RequestAnnouncementController {
++RequestAnnouncementController(AnnouncementCategoryRepository, PropertyCategoryRepository, AgencyRepository)
++submitRequest()
+-getAnnouncementCategoryByDescription(announcementCategoryDescription)
+-getPropertyCategoryByDescription(propertyCategoryDescription)
+-getAgencyByDesignation(agencyDesignation)
+}
+
+class Repositories {
+-Repositories()
++getInstance() : Repositories
++getAnnouncementCategoryRepository()
++getPropertyCategoryRepository()
++getAgencyRepository()
+}
+
+class AgencyRepository {
++getAgencyByDesignation()
+}
+
+class PropertyCategoryRepository {
++getPropertyCategoryByDescription()
+}
+
+class AnnouncementCategoryRepository {
++getAnnouncementCategoryByDescription()
+}
+
+
+class PropertyCategory {
+-String description
+
++PropertyCategory(description)
+}
+
+class AnnouncementCategory {
+-String description
+
++AnnouncementCategory(description)
+}
+
+class SaleRequest {
+-Double requestedPrice
+}
+
+class RentRequest {
+-Double monthlyRent
+-String contractDuration
+}
+
+class Owner {
+-String name
+-String email
+-String password
+}
+
+note right of PropertyCategoryRepository {
+- used for displaying property category list
+}
+
+note bottom of AnnouncementCategoryRepository {
+- used for displaying announcement category list
+}
+
+note top of AgencyRepository {
+- used for displaying agency list
+}
+
+
+
+RequestAnnouncementUI .> RequestAnnouncementController
+RequestAnnouncementController .> Repositories : repositories
+RequestAnnouncementController .> PropertyCategoryRepository
+RequestAnnouncementController .> AnnouncementCategoryRepository
+RequestAnnouncementController .> AgencyRepository
+
+RequestAnnouncementController ..> AnnouncementCategory
+RequestAnnouncementController ....> PropertyCategory
+RequestAnnouncementController .> ApplicationSession
+RequestAnnouncementController ..> UserSession
+
+Repositories --> "1" PropertyCategoryRepository
+Repositories --> "1" AnnouncementCategoryRepository
+Repositories --> "1" AgencyRepository
+
+
+
+PropertyCategoryRepository "1" -> "3" PropertyCategory
+
+AnnouncementCategoryRepository "1" --> "2" AnnouncementCategory
+
+AgencyRepository "1" --> "*" Agency
+
+
+
+Agency "1" -> "*" Agent : employs
+Agency "1" --> "*" Announcement
+Owner "1" --> "*" Agent : chooses
+
+Announcement "*" --> "1" AnnouncementCategory
+Announcement "*" --> "1" PropertyCategory
+Announcement -> Agent : published by
+Announcement "*" --> "1" Address
+Announcement <|-- SaleRequest
+Announcement <|-- RentRequest
+Announcement --> Commission
+
+Agent "*" --> "1" Address
+
+ApplicationSession --> ApplicationSession : instance
+ApplicationSession --> UserSession
+
+
+
+
+
+@enduml

@@ -1,0 +1,128 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "Agent" as Agent
+participant ":PublishAnnouncementUI" as UI
+participant ":PublishAnnouncementController" as Controller
+participant "agency\n:Agency" as Agency
+
+activate Agent
+
+    Agent -> UI : asks to publish a sale announcement
+
+    activate UI
+
+        UI -> Controller** : create
+        UI -> Controller : getPropertyCategoryList()
+        ref over Controller
+            Get Property Category List
+
+        end ref
+
+        activate Controller
+
+            Controller --> UI : propertyCategoryList
+        deactivate Controller
+
+        UI --> Agent : shows property category list and asks to sleect one
+    deactivate UI
+
+    Agent -> UI : selects a property category
+    activate UI
+
+    UI --> UI : keepPropertyCategory(propertyCategoryDescription)
+
+    UI -> Controller : getAnnouncementCategories()
+    activate Controller
+
+    ref over Controller
+                Get Announcement Category List
+
+            end ref
+
+    Controller --> UI : announcementCategoryList
+    deactivate Controller
+
+        UI --> Agent : shows announcement category list (sale or rental) and asks to select on
+    deactivate UI
+
+    Agent -> UI : selects the sale announcement category
+    activate UI
+
+    UI --> UI : keepAnnouncementCategory(announcementCategoryDescription)
+
+        UI --> Agent : requests data
+    deactivate UI
+
+    Agent -> UI : types requested data
+    activate UI
+
+    UI --> UI : keepAnnouncementData(data)
+
+    UI -> Agent : shows all data and requests confirmation
+    deactivate UI
+
+    Agent -> UI : confirms
+    activate UI
+
+    UI -> Controller : publishAnnouncement(data)
+    activate Controller
+
+            Controller -> Controller : getPropertyCategoryByDescription(propertyCategoryDescription)
+            activate Controller
+
+                ref over Controller
+                    Get Property Category Object
+
+                end ref
+
+                Controller --> Controller : propertyCategory
+            deactivate Controller
+
+            Controller -> Controller : getAnnouncementCategoryByDescription(announcementCategoryDescription)
+            activate Controller
+
+                ref over Controller
+                Get Announcement Category Object
+
+                end ref
+
+            Controller --> Controller : announcementCategory
+            deactivate Controller
+
+
+
+            Controller -> Controller : getAgentFromSession()
+            activate Controller
+
+                ref over Controller
+                    Get Agent
+
+                end ref
+                Controller -> Controller : agent
+            deactivate Controller
+
+            Controller -> Agency: publishAnnouncement()
+            activate Agency
+
+                ref over Agency
+                    Publish Announcement
+
+                end
+
+                Agency --> Controller : announcement
+            deactivate Agency
+
+            Controller --> UI: announcement
+            deactivate Controller
+            UI --> Agent: informs operation success
+    deactivate UI
+
+deactivate Agent
+
+@enduml

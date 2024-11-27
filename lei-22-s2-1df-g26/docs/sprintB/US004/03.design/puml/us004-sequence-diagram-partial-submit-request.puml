@@ -1,0 +1,29 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant "agency\n:Agency" as Agency
+participant "announcement\n:announcement" as Announcement
+
+autonumber 81
+-> Agency: submitRequest(information, agent)
+
+autonumber 81.1
+activate Agency
+    group Submit Request
+
+        Agency -> Announcement**: submitRequest(information, agent)
+        Agency -> Agency: addRequest (request)
+
+
+            Agency -> Agency: validateRequest(request)
+
+    end
+
+    autonumber 82
+    <-- Agency : request
+deactivate Agency
+
+
+@enduml

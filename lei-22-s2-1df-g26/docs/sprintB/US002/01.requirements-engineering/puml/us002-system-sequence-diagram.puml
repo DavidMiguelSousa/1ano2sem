@@ -1,0 +1,43 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+autonumber
+
+actor "Agent" as Agent
+participant ":System" as System
+
+activate Agent
+
+    Agent -> System : asks to publish a sale announcement
+    activate System
+
+
+
+        System --> Agent : shows property category list (apartment, house or land) and asks to select one
+    deactivate System
+
+     Agent -> System : selects a property category
+     activate System
+
+        System --> Agent : shows announcement category list (sale or rental) and asks to select one
+     deactivate System
+
+     Agent -> System : selects the sale announcement category
+     activate System
+
+        System --> Agent : requests data
+     deactivate System
+
+     Agent -> System : types requested data
+     activate System
+
+        System --> Agent : shows all data and requests confirmation
+     deactivate System
+
+     Agent -> System : confirms
+     activate System
+
+        System --> Agent : informs operations success
+     deactivate System
+
+
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+autonumber
+
+title System Sequence Diagram (SSD) - US005
+actor "System administrator" as Admin
+participant ":System" as System
+
+activate Admin
+
+    Admin -> System : Asks to register a new store
+    activate System
+
+        System --> Admin : Shows list of stores and asks for store info
+    deactivate System
+
+        Admin -> System : Inputs store info (Id, designation/name, location, phone number, email)
+        activate System
+
+
+       System --> Admin : Shows all information
+    deactivate System
+
+    Admin -> System : Confirms
+    activate System
+
+       System --> Admin : Informs operation success
+    deactivate System
+
+@enduml

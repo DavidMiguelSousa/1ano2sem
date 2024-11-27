@@ -1,0 +1,43 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+title US007 - Domain Model
+
+class UnregisteredUser {
+}
+
+class RegisteredUser {
+    - name
+    - email
+    - password
+}
+
+class Client {
+}
+
+class Owner {
+}
+
+class System {
+}
+
+note left of RegisteredUser
+New user should have
+access to the owner and
+client funcionalities
+end note
+
+UnregisteredUser "1" -- "1" RegisteredUser : > turns into
+RegisteredUser "1" -- "1" Client : > can be
+RegisteredUser "1" -- "1" Owner : > can be
+UnregisteredUser "1" -- "1" System : > registers in
+RegisteredUser "1" -- "1" System : > registered in
+
+@enduml

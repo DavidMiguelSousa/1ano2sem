@@ -1,0 +1,31 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - US001
+actor "Unregistered User" as User
+
+activate User
+User --> ":System" : Decides to enter the app without registering and asks the system to display listed properties.
+activate ":System"
+
+":System" --> User : Displays all properties sorted by most recently added and exhibits type of business, type of property and number of rooms buttons.
+deactivate ":System"
+
+User --> ":System" : Chooses if he wants to buy or rent a property, the desired type of property and the desired number of rooms.
+activate ":System"
+
+":System" --> User : Displays listed properties according to user's decisions.
+deactivate ":System"
+
+User --> ":System" : Asks the system to sort by specific parameters (price of the property or parish of the location).
+activate ":System"
+
+":System"--> User : Displays listed properties sorted according to selected parameters.
+deactivate ":System"
+
+deactivate User
+
+@enduml

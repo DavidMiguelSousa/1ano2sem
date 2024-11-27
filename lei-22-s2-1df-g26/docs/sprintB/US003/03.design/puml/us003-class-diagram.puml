@@ -1,0 +1,109 @@
+@startuml
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+
+skinparam classAttributeIconSize 0
+
+left to right direction
+
+class RegisterEmployeeUI{
+-RegisterEmployeeController ctrl
+-List<Role> roles
++RegisterEmployeeUI()
++run()
++bootstrapRoles()
+}
+
+class RegisterEmployeeController{
+-EmployeeRepository employeeRepo
+-AgencyRepository agencyRepo
+-Employee emp
+- String password
++create( String email, String name, Role role,\nString phoneNumber,String passportNumber,\nString passportDateOfIssue, String passportDateOfExpiry,\nString state, String city, String district, \nString street, String zipCode, \nString taxNumber, Agency agency, boolean storeAddress );
++saveEmployee()
++generatedPass()
+
+}
+
+class Employee{
+-email
+-name
+-phone
+-passport
+-location
+-taxNumber
+-role
+-agency
++verifyemail()
++verifyname()
++verifyphone()
+}
+
+class Passport{
+-number
+-dateOfIssue
+-dateOfExpiry
+}
+
+class Location{
+-state
+-city
+-district
+-street
+-zipCode
++toString()
+}
+
+class Agency{
+-id
+-List<Announcement> announcements
+-designation
+-email
+-phoneNumber
+-address
+}
+
+class EmployeeRepository{
+-List<Employee> employees
++create( String email, String name, Role role,\nString phoneNumber,String passportNumber,\nString passportDateOfIssue, String passportDateOfExpiry,\nString state, String city, String district, \nString street, String zipCode, \nString taxNumber, Agency agency, boolean storeAddress );
++validateEmployee(Employee emp)
+}
+class AgencyRepository{
+-List<Agency> agencies
++List<Agency> getAgencies()
+
+}
+class AuthenticationRepository{
++addUserRole(String id, String description)
++addUserWithRole(String name, String email, String pwd, String roleId)
+}
+class Repositories{
+-EmployeeRepository employeeRepository
+-AgencyRepository agencyRepository
+-AuthenticationRepository authenticationRepository
++getEmployeeRepository()
++getAgencyRepository()
++getAuthenticationRepository()
+}
+enum Role{
+STORE_MANAGER
+STORE_NETWORK_MANAGER
+AGENT
+}
+
+RegisterEmployeeUI ..> RegisterEmployeeController
+RegisterEmployeeController ..> Repositories
+Repositories --> EmployeeRepository : has a >
+Repositories --> AgencyRepository : has a >
+Repositories --> AuthenticationRepository : registers Employee >
+RegisterEmployeeController ..> EmployeeRepository
+RegisterEmployeeController ..> AgencyRepository
+RegisterEmployeeController ..> AuthenticationRepository
+AgencyRepository "1"--"*" Agency : keeps info >
+EmployeeRepository "1"--"*" Employee : keeps info >
+Employee *-- Passport
+Employee *-- Location
+Employee --o Agency
+Employee *-- Role
+@enduml

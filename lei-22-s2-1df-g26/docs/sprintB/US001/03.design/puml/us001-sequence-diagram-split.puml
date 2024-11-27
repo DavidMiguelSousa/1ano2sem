@@ -1,0 +1,247 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "Unregistered User" as User
+participant ":DisplayPropertiesUI" as UI
+participant ":DisplayPropertiesController" as CTRL
+participant ":Repositories" as Repository
+participant "repositories\n:Repositories" as Repositories
+participant "propertyCategoryRepository:\nPropertyCategoryRepository" as PropertyCategoryRepository
+participant "announcementCategoryRepository:\nAnnouncementCategoryRepository" as AnnouncementCategoryRepository
+participant "agencyRepository:\nAgencyRepository" as AgencyRepository
+participant "agency:\nAgency" as Agency
+participant "AnnouncementHandling" as AnnouncementHandling
+activate User
+
+        User -> UI : requests to display properties
+
+        UI --> User: asks the user if he wants to filter the listing
+
+        alt user wants to filter the listing
+            User -> UI: chooses option "YES"
+            activate UI
+
+                UI --> UI: keeps user's choice
+
+                UI -> CTRL**: creates DisplayPropertiesController
+
+                UI -> CTRL: submits user's choice
+                activate CTRL
+
+                    CTRL -> Repository: getInstance()
+                    activate Repository
+
+                        Repository --> CTRL: repositories
+                    deactivate Repository
+
+                    CTRL -> Repositories : getAnnouncementCategoryRepository()
+                    activate Repositories
+
+                        Repositories -> CTRL : announcementCategoryRepository
+                    deactivate Repositories
+
+                    CTRL -> AnnouncementCategoryRepository : getAnnouncementCategoryList()
+                    activate AnnouncementCategoryRepository
+
+                        AnnouncementCategoryRepository --> CTRL : announcementCategoryList
+                    deactivate AnnouncementCategoryRepository
+
+                    CTRL --> UI : announcementCategoryList
+                deactivate CTRL
+
+                UI --> User: shows the user the announcement category list (buy, rent) and asks the user to choose an option
+            deactivate UI
+
+            User -> UI: chooses if he wants to buy or rent a property
+            activate UI
+
+                UI --> UI: keeps user's choice
+
+                UI -> CTRL: submits user's choice
+                activate CTRL
+
+                    CTRL -> Repository: getInstance()
+                    activate Repository
+
+                        Repository --> CTRL: repositories
+                    deactivate Repository
+
+                    CTRL -> Repositories : getPropertyCategoryRepository()
+                    activate Repositories
+
+                        Repositories -> CTRL : propertyCategoryRepository
+                    deactivate Repositories
+
+                    CTRL -> PropertyCategoryRepository : getPropertyCategoryList()
+                    activate PropertyCategoryRepository
+
+                        PropertyCategoryRepository --> CTRL : propertyCategoryList
+                    deactivate PropertyCategoryRepository
+
+                    CTRL --> UI : propertyCategoryList
+                deactivate CTRL
+
+                UI --> User: shows the available property categories and asks the user to choose an option
+            deactivate UI
+
+            alt
+                User -> UI: chooses the option land
+                activate UI
+
+                    UI --> UI: keeps user's choice.
+                deactivate UI
+
+            else
+
+                User -> UI: chooses one of two options: house or apartment
+                activate UI
+
+                    UI --> UI: keeps user's choice.
+
+                    UI --> User: asks the user to input a number of bedrooms
+                deactivate UI
+
+            User -> UI: chooses a number of bedrooms
+            activate UI
+
+                UI --> UI: keeps user's choice
+
+            end
+
+            UI -> CTRL: submits user's choice(s)
+
+            UI -> CTRL : getFilteredAnnouncementList()
+            activate CTRL
+
+                CTRL -> CTRL : getAnnouncementCategoryByDescription(announcementCategoryDescription)
+
+                CTRL -> Repository : getInstance()
+                activate Repository
+
+                    Repository --> CTRL: repositories
+                deactivate Repository
+
+                CTRL -> Repositories : getAnnouncementCategoryRepository()
+                activate Repositories
+
+                    Repositories -> CTRL : announcementCategoryRepository
+                deactivate Repositories
+
+                CTRL -> AnnouncementCategoryRepository : getAnnouncementCategoryByDescription(announcementCategoryDescription)
+                activate AnnouncementCategoryRepository
+
+                    AnnouncementCategoryRepository --> CTRL : announcementCategory
+                deactivate AnnouncementCategoryRepository
+
+                CTRL --> CTRL : announcementCategory
+
+                |||
+                CTRL -> CTRL : getPropertyCategoryByDescription(propertyCategoryDescription)
+
+                    CTRL -> Repository: getInstance()
+                    activate Repository
+
+                        Repository --> CTRL: repositories
+                    deactivate Repository
+
+                    CTRL -> Repositories : getPropertyCategoryRepository()
+                    activate Repositories
+
+                        Repositories -> CTRL : propertyCategoryRepository
+                    deactivate Repositories
+
+                    CTRL -> PropertyCategoryRepository : getPropertyCategoryByDescription(propertyCategoryDescription)
+                    activate PropertyCategoryRepository
+
+                        PropertyCategoryRepository --> CTRL : propertyCategory
+                    deactivate PropertyCategoryRepository
+
+                    CTRL --> CTRL : propertyCategory
+
+                |||
+                CTRL -> AgencyRepository: getDefaultSortedAnnouncementList()
+                ref over AgencyRepository, AnnouncementHandling
+
+                    Get Default Sorted Announcement List
+
+                end
+
+                    AnnouncementHandling --> CTRL: defaultSortedAnnouncementList
+                deactivate AnnouncementHandling
+
+                |||
+                CTRL -> AnnouncementHandling: getFilteredAnnouncementList(defaultSortedAnnouncementList, propertyCategory, announcementCategory, numberOfRooms)
+                activate AnnouncementHandling
+
+                    AnnouncementHandling -> AnnouncementHandling: filterAnnouncements(defaultSortedAnnouncementList, propertyCategory, announcementCategory, numberOfRooms)
+
+                    AnnouncementHandling --> CTRL: displaybleAnnouncementList
+                deactivate AnnouncementHandling
+
+                CTRL --> UI: displaybleAnnouncementList
+            deactivate CTRL
+
+        else
+
+            autonumber 3
+
+            User -> UI: chooses option "NO"
+            activate UI
+
+                UI --> UI: keeps user's choice
+
+                UI -> CTRL: submits user's choice
+                activate CTRL
+
+                    CTRL -> AgencyRepository: getDefaultSortedAnnouncementList()
+
+                    ref over AgencyRepository, AnnouncementHandling
+
+                        Get Default Sorted Announcement List
+
+                    end
+
+                        AnnouncementHandling --> CTRL: defaultSortedAnnouncementList
+                    deactivate AnnouncementHandling
+
+                    CTRL --> UI: displaybleAnnouncementList
+            deactivate CTRL
+
+        end
+        autonumber 85
+
+        UI --> User: displays announcements according to user's decisions and exhibits \nsorting options (price, city or state of the property - ascending or descending)
+    deactivate UI
+
+    User -> UI : chooses the desired type of sorting
+    activate UI
+
+        UI --> UI: keeps user's choice
+
+        UI -> CTRL: submits user's decisions
+
+        UI -> CTRL: getSelectedDataSortedAnnouncementList(displaybleAnnouncementList, selectedSorting)
+        activate CTRL
+
+            CTRL -> AnnouncementHandling: sortAnnouncementsBySelectedData(displaybleAnnouncementList, selectedSorting)
+            activate AnnouncementHandling
+
+                AnnouncementHandling -> AnnouncementHandling: sortAnnouncementsBySelectedData(ValidatedAnnouncementList, selectedSorting)
+
+                AnnouncementHandling --> CTRL :selectedDataSortedAnnouncementList
+            deactivate AnnouncementHandling
+
+            CTRL --> UI : selectedDataSortedAnnouncementList
+        deactivate CTRL
+
+        UI --> User : displays properties according to user's decisions
+    deactivate UI
+
+deactivate User
+
+@enduml

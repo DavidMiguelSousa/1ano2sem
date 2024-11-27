@@ -1,0 +1,45 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+
+
+'hide footbox
+participant ":RequestPropertyController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "propertyCategoryRepository:\nPropertyCategoryRepository" as PropertyCategoryRepository
+
+autonumber 3
+
+-> CTRL : getPropertyCategoryList()
+
+autonumber 3.1
+activate CTRL
+    group Get Property Category List
+
+        CTRL -> RepositorySingleton : getInstance()
+        activate RepositorySingleton
+
+        RepositorySingleton --> CTRL: repositories
+        deactivate RepositorySingleton
+
+        CTRL -> PLAT : getPropertyCategoryRepository()
+        activate PLAT
+
+        PLAT --> CTRL: propertyCategoryRepository
+        deactivate PLAT
+
+        CTRL -> PropertyCategoryRepository : getPropertyCategoryList()
+        activate PropertyCategoryRepository
+
+        PropertyCategoryRepository --> CTRL : propertyCategoryList
+        deactivate PropertyCategoryRepository
+
+    end
+    autonumber 4
+    <-- CTRL : propertyCategoryList
+    deactivate CTRL
+
+@enduml

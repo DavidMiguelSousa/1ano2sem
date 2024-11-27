@@ -1,0 +1,31 @@
+@startuml
+
+-> AgencyRepository: getDefaultSortedAnnouncementList()
+activate AgencyRepository
+
+    loop for each agency
+
+    AgencyRepository -> Agency: getAgencyAnnouncements()
+    activate Agency
+    deactivate AgencyRepository
+
+        Agency --> AnnouncementHandling: agencyAnnouncementList
+        activate AnnouncementHandling
+        deactivate Agency
+
+            AnnouncementHandling -> AnnouncementHandling: sortAnnouncementsByDefault(agencyAnnouncementList)
+
+            AnnouncementHandling --> AnnouncementHandling: defaultSortedAgencyAnnouncementList
+
+            AnnouncementHandling -> AnnouncementHandling: addAgencyAnnouncementList(defaultSortedAgencyAnnouncementList)
+
+    end
+
+    AnnouncementHandling --> AnnouncementHandling: announcementsList
+
+    AnnouncementHandling -> AnnouncementHandling: getDefaultSortedAnnouncementList(announcementsList)
+
+    <-- AnnouncementHandling: defaultSortedAnnouncementList
+deactivate AnnouncementHandling
+
+@enduml

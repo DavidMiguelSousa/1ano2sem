@@ -1,0 +1,89 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+autonumber
+
+title System Sequence Diagram (SSD) - US004
+actor "Owner" as Owner
+participant ":System" as System
+
+activate Owner
+
+    Owner -> System : asks to submit a request for listing a property
+    activate System
+
+        System --> Owner : shows property  category list (apartment, house or land) and asks to select one
+    deactivate System
+
+    Owner -> System : selects a property category
+    activate System
+
+       System --> Owner : shows announcement category list (sale or rental) and asks to select one
+    deactivate System
+
+alt
+
+    Owner -> System : selects sale
+    activate System
+
+    System --> Owner : requests price
+    deactivate System
+
+    Owner -> System : introduces price
+    activate System
+
+else
+
+    Owner -> System : selects rental
+    activate System
+
+        System --> Owner : requests monthly rent
+    deactivate System
+
+    Owner -> System : introduces monthly rent
+    activate System
+
+end alt
+loop
+        System --> Owner : requests photographs
+    deactivate System
+
+    Owner -> System : introduces the URI of the photograghs
+    activate System
+
+break
+    Owner -> System : introduces a number
+
+end break
+end loop
+       System --> Owner : requests information
+    deactivate System
+
+    Owner -> System : introduces requested information (property charactheristics, address)
+    activate System
+
+        System --> Owner : shows list of all agencies and asks to select one
+    deactivate System
+
+    Owner -> System : chooses an agency from the list
+    activate System
+
+       System --> Owner : shows list of agents available that work on the selected agency and asks to select one
+    deactivate System
+
+    Owner -> System : chooses an agent from the list
+    activate System
+
+       System --> Owner : shows all data and request confirmation
+    deactivate System
+
+    Owner -> System : confirms
+    activate System
+
+       System --> Owner : informs operatrion success
+    deactivate System
+
+
+
+@enduml

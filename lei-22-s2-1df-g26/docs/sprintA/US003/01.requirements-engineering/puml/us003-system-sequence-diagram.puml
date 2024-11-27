@@ -1,0 +1,60 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - US003
+actor Administrator as Admin
+
+activate Admin
+Admin -> ":System" : asks to create a new employee
+activate ":System"
+
+":System"--> Admin : asks for employee's data\n(name, citizenCardNumber, taxNumber,\n address, email, phoneNumber)
+deactivate ":System"
+
+Admin -> ":System" : types the required data
+activate ":System"
+
+":System" --> Admin : shows list of existing agencies
+deactivate ":System"
+
+Admin -> ":System" : selects an agency
+activate ":System"
+
+loop
+
+":System" --> Admin : shows roles
+deactivate ":System"
+
+Admin -> ":System" : chooses the role
+activate ":System"
+
+":System" --> Admin : asks if Admin wants to choose another role
+deactivate ":System"
+
+alt
+
+Admin -> ":System" : confirms
+activate ":System"
+
+else
+
+Admin -> ":System" : negates (breaks out of the loop)
+
+
+end alt
+
+end loop
+
+":System"-->Admin : generates password and shows data
+deactivate ":System"
+
+Admin -> ":System" : confirms
+activate ":System"
+
+":System" --> Admin : new employee registered with success
+deactivate ":System"
+
+deactivate Admin
+@enduml

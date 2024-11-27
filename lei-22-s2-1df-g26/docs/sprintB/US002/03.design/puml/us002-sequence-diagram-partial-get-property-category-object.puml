@@ -1,0 +1,40 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant ":PublishAnnouncementController" as Controller
+participant "Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as RepositoryInstance
+participant "propertyCategoryRepository:\nPropertyCategoryRepository" as PropertyRepository
+
+autonumber 19
+-> Controller : getPropertyCategoryByDescription()
+autonumber 19.1
+activate Controller
+
+    group Get Property Category Object
+        Controller -> RepositorySingleton: getInstance()
+        activate RepositorySingleton
+
+            RepositorySingleton -> Controller: repositories
+        deactivate RepositorySingleton
+
+        Controller -> RepositoryInstance: getPropertyCategoryRepository()
+        activate RepositoryInstance
+
+            RepositoryInstance --> Controller: propertyCategoryRepository
+        deactivate RepositoryInstance
+
+        Controller -> PropertyRepository: getPropertyCategoryByDescription(propertyCategoryDescription)
+        activate PropertyRepository
+
+            PropertyRepository --> Controller: propertyCategory
+        deactivate PropertyRepository
+
+    end
+    autonumber 20
+    <-- Controller : propertyCategory
+deactivate Controller
+
+@enduml

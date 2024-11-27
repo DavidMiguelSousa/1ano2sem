@@ -1,0 +1,57 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+left to right direction
+
+actor "System Administrator" as SystemAdministrator
+actor "Unregistered User" as UnregisteredUser
+actor "Agent" as Agent
+actor "Owner" as Owner
+actor "Buyer" as Buyer
+actor "Store Network Manager" as StoreNetworkManager
+actor "Store Manager" as StoreManager
+
+
+SystemAdministrator -- (Register a new store)
+SystemAdministrator -- (Register a new employee)
+SystemAdministrator -- (Specify)
+(Specify) -- (State)
+(Specify) -- (District)
+(Specify) -- (City)
+
+
+UnregisteredUser -- (Display listed properties from most recent to preexistent)
+UnregisteredUser -- (Sort the offers by criteria such as price or the city where the property is located)
+
+
+Agent -- (Review advertisement requests)
+Agent -- (Register the property's information)
+Agent -- (Publish sale or rent announcement)
+Agent -- (Receive client request to schedule a visit to a specific property, check the availability and send response)
+Agent -- (Record visit and indication of whether or not he thinks the deal will take place)
+Agent -- (Accept or reject client's order to purchase/lease a property)
+
+
+Owner -- (Submit request for listing a property sale or rent, choosing the responsible agent)
+Owner -- (Provide property characteristics, as well as the requested price)
+
+
+Buyer -- (Display listed properties from most recent to preexistent)
+Buyer -- (Access registered information about a property, except the agency commission)
+Buyer -- (Sort the offers by criteria such as price or the city where the property is located)
+Buyer -- (Request to schedule a visit to the agent for a specific property)
+Buyer -- (Accept or reject agent's order)
+Buyer -- (Send request for purchase/lease of property to the agent)
+
+
+StoreNetworkManager -- (Manage a set of stores - network)
+StoreNetworkManager -- (Create a report on the performance of each branch and the global behaviour of the network on a daily basis)
+
+
+StoreManager -- (Manage a store in the network)
+StoreManager -- (Evaluate employee's performances)
+
+@enduml

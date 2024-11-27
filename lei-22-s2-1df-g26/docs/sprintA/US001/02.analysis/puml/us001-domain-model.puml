@@ -1,0 +1,80 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype ortho
+left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+title US001 - Domain Model
+
+class UnregisteredUser {
+}
+
+class TypeOfProperty {
+}
+
+note left of TypeOfProperty
+    - description:
+        1 - land
+        2 - apartment
+        3 - house
+end note
+
+class TypeOfBusiness {
+}
+
+note left of TypeOfBusiness
+    - description:
+        1 - sale
+        2 - rent
+end note
+
+class Land {
+    - area
+    - distanceFromCityCentre
+    - photographs
+}
+
+class Apartment {
+    - numberOfBedrooms
+    - numberOfBathrooms
+    - numberOfParkingSpaces
+    - availableEquipment
+}
+
+class House {
+    - hasBasement
+    - hasInhabitableLoft
+    - sunExposure
+}
+
+class Announcement {
+    - commission
+    - publicationDate
+}
+
+class SaleRequest {
+    - requestedPrice
+}
+
+class RentRequest {
+    - monthlyRent
+    - contractDuration
+}
+
+RentRequest --|> Announcement
+SaleRequest --|> Announcement
+TypeOfProperty -- Announcement
+TypeOfBusiness -- Announcement
+Apartment -- Land
+House -- Apartment
+Land --|> Announcement
+UnregisteredUser "1" --- "0..*" Announcement : lists >
+
+@enduml

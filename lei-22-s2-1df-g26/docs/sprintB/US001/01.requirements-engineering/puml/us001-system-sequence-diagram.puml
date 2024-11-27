@@ -1,0 +1,67 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - US001
+
+actor "Unregistered User" as User
+participant ":System" as System
+
+activate User
+
+    User -> System: Decides to enter the app without registering and requests to see the displayed properties.
+    activate System
+
+        System --> User: Asks the user if he wants to filter the listing (Yes/No).
+    deactivate System
+
+    alt
+        User -> System: (No) Selects default settings.
+        activate System
+
+            System --> User: Displays properties sorted by default (most recently added first).
+        deactivate System
+
+    else
+
+        User -> System: (Yes) Requests to select filters.
+        activate System
+
+            System --> User: Asks the user if he wants to buy or rent a property.
+        deactivate System
+
+        User -> System: Chooses if he wants to buy or rent a property.
+        activate System
+
+            System --> User: Asks the user the desired type of property (house, apartment or land).
+        deactivate System
+
+        alt
+            User -> System: Chooses land.
+
+        else
+            User -> System: Chooses house or apartment.
+            activate System
+
+                System --> User: Asks the user the desired number of rooms (1, 2, 3, 4, 5+)
+            deactivate System
+
+            User -> System: Chooses the desired number of rooms.
+        end
+
+    end
+    activate System
+
+        System --> User: Asks the user how he wants to sort the displayed properties (price, city or state of the property - ascending or descending).
+    deactivate System
+
+    User -> System: Chooses the desired type of sorting.
+    activate System
+
+        System --> User: Displays listed properties according to user's sorting method.
+    deactivate System
+deactivate User
+
+@enduml

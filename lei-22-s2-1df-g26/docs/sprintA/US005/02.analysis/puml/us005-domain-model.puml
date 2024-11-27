@@ -1,0 +1,59 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+title US005 - Domain Model
+
+class RegisteredUser {
+    - name
+    - email
+    - password
+}
+
+class SystemAdministrator {
+}
+
+class Address {
+    -streetName
+    -city
+    -state
+    -zipcode
+}
+
+class Agency {
+    - designation
+    - email
+    - phoneNumber
+}
+
+class Employee {
+    - citizenCardNumber
+    - taxNumber
+    - phoneNumber
+}
+
+class Role {
+}
+
+note left of Role
+    - description:
+        1 - agent
+        2 - storeManager
+        3 - storeNetworkManager
+end note
+
+Employee --|> RegisteredUser
+SystemAdministrator --|> Employee
+SystemAdministrator "1" --- "1..*" Agency : registers >
+Agency "1" --- "*" Employee : has >
+Agency -- Address
+Employee -- Address
+Employee -- Role
+
+@enduml

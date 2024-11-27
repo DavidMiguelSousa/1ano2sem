@@ -1,0 +1,88 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype ortho
+left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+title US001 - Domain Model
+
+class UnregisteredUser {
+}
+
+class PropertyCategory {
+}
+
+note right of PropertyCategory
+    - description:
+        1 - land
+        2 - apartment
+        3 - house
+end note
+
+class BusinessCategory {
+}
+
+note right of BusinessCategory
+    - description:
+        1 - sale
+        2 - rent
+end note
+
+class Land {
+    - area
+    - distanceFromCityCentre
+}
+
+class Apartment {
+    - numberOfBedrooms
+    - numberOfBathrooms
+    - numberOfParkingSpaces
+}
+
+class AvailableEquipment {
+    - centralHeating
+    - airConditioning
+}
+
+class House {
+    - hasBasement
+    - hasInhabitableLoft
+    - sunExposure
+}
+
+class Announcement {
+}
+
+class Commission {
+}
+
+class SaleRequest {
+    - requestedPrice
+}
+
+class RentRequest {
+    - monthlyRent
+    - contractDuration
+}
+
+Announcement <|--- RentRequest
+Announcement <|--- SaleRequest
+Apartment --|> Land
+House --|> Apartment
+Land --|> Announcement
+UnregisteredUser "1" --- "0..*" Announcement : lists >
+Apartment *- AvailableEquipment
+Agent "1" -- "1" Commission : > sets a
+Agent "1" -- "1..*" Announcement : > publishes
+Announcement *- Commission
+Announcement "1" --- "1" BusinessCategory : > has a
+Announcement "1" --- "1" PropertyCategory : > has a
+
+@enduml

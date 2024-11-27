@@ -1,0 +1,51 @@
+-@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+title Domain Model US003
+
+class SystemAdministrator {
+}
+
+class Employee {
+    - citizenCardNumber
+    - taxNumber
+    - phoneNumber
+}
+
+class Address {
+    - street
+    - city
+    - district
+    - state
+    - zipCode
+}
+
+class Agency {
+    - designation
+    - email
+    - phoneNumber
+}
+
+class Role {
+}
+
+note right of Role
+    - description:
+        1- agent
+        2- storeManager
+        3- storeNetWorkManager
+end note
+
+SystemAdministrator "1" -- "*" Employee : registers >
+Employee "*" -- "1" Agency : employs <
+Employee "1"--"1" Address
+Employee "*" -- "*" Role
+
+@enduml

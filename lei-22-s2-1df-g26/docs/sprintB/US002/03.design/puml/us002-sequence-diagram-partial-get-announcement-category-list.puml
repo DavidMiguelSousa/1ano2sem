@@ -1,0 +1,48 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+
+participant ":CreateAnnouncementController" as Controller
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as RepositoryInstance
+participant "announcementCategoryRepository\n:AnnouncementCategoryRepository" as AnnouncementCategoryRepository
+
+autonumber 8
+
+ -> Controller : getAnnouncementCategoryList()
+autonumber 8.1
+activate Controller
+    group Get Announcement Category List
+
+
+            Controller -> RepositorySingleton : getInstance()
+            activate RepositorySingleton
+
+                RepositorySingleton --> Controller: repositories
+            deactivate RepositorySingleton
+
+            Controller -> RepositoryInstance : getAnnouncementCategoryRepository()
+            activate RepositoryInstance
+
+                RepositoryInstance --> Controller: announcementCategoryRepository
+            deactivate RepositoryInstance
+
+            Controller -> AnnouncementCategoryRepository : getAnnouncementCategories()
+            activate AnnouncementCategoryRepository
+
+                AnnouncementCategoryRepository --> Controller : announcementCategoryList
+            deactivate AnnouncementCategoryRepository
+
+
+    end
+    autonumber 9
+    <-- Controller  : announcementCategoryList
+deactivate Controller
+
+
+@enduml

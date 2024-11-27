@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="505px" preserveAspectRatio="none" style="width:1099px;height:505px;background:#FFFFFF;" version="1.1" viewBox="0 0 1099 505" width="1099px" zoomAndPan="magnify"><defs/><g><!--MD5=[35ae6afabc28cfceb76ccc01ee55d1fe]
+class Repositories--><g id="elem_Repositories"><rect codeLine="11" fill="#F1F1F1" height="118.4375" id="Repositories" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="194" x="802.5" y="7"/><ellipse cx="855.75" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M857.75,19.5 Q857.9531,19 858.1875,18.75 Q858.4219,18.5 858.6875,18.5 Q859.1563,18.5 859.4531,18.7813 Q859.75,19.0625 859.75,19.7188 L859.75,21.2813 Q859.75,21.9375 859.4688,22.2188 Q859.1875,22.5 858.75,22.5 Q858.3594,22.5 858.1094,22.3281 Q857.8594,22.1563 857.75,21.7031 Q857.7031,21.3906 857.5313,21.2188 Q857.2188,20.8906 856.6563,20.7031 Q856.0938,20.5 855.5313,20.5 Q854.8281,20.5 854.2344,20.7813 Q853.6563,21.0625 853.2031,21.6875 Q852.75,22.3125 852.75,23.1719 L852.75,24.0938 Q852.75,25.125 853.5938,25.8125 Q854.4375,26.5 855.9375,26.5 Q856.8281,26.5 857.4531,26.2969 Q857.8125,26.1875 858.2188,25.8281 Q858.4844,25.625 858.625,25.5625 Q858.7656,25.5 858.9375,25.5 Q859.2656,25.5 859.5,25.7656 Q859.75,26.0156 859.75,26.375 Q859.75,26.7188 859.4063,27.125 Q858.9063,27.7188 858.1094,28.0469 Q857.0625,28.5 855.7813,28.5 Q854.2813,28.5 853.0781,27.9063 Q852.1094,27.4375 851.4219,26.4219 Q850.75,25.4063 850.75,24.2031 L850.75,23.1094 Q850.75,21.8594 851.3438,20.7656 Q851.9531,19.6719 853,19.0938 Q854.0625,18.5 855.25,18.5 Q855.9688,18.5 856.5938,18.75 Q857.2188,19 857.75,19.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="79" x="876.25" y="28.7285">Repositories</text><line style="stroke:#181818;stroke-width:0.5;" x1="803.5" x2="995.5" y1="39" y2="39"/><line style="stroke:#181818;stroke-width:0.5;" x1="803.5" x2="995.5" y1="47" y2="47"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="94" x="808.5" y="65.5332">-Repositories()</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="182" x="808.5" y="83.1426">+getInstance() : Repositories</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="140" x="808.5" y="100.752">+getStoreRepository()</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="160" x="808.5" y="118.3613">+getLocationRepository()</text></g><!--MD5=[167ae95e1b2e11f1d45a5604a466e373]
+class StoreRepository--><g id="elem_StoreRepository"><rect codeLine="18" fill="#F1F1F1" height="83.2188" id="StoreRepository" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="206" x="238.5" y="245.5"/><ellipse cx="286.25" cy="261.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M288.25,258 Q288.4531,257.5 288.6875,257.25 Q288.9219,257 289.1875,257 Q289.6563,257 289.9531,257.2813 Q290.25,257.5625 290.25,258.2188 L290.25,259.7813 Q290.25,260.4375 289.9688,260.7188 Q289.6875,261 289.25,261 Q288.8594,261 288.6094,260.8281 Q288.3594,260.6563 288.25,260.2031 Q288.2031,259.8906 288.0313,259.7188 Q287.7188,259.3906 287.1563,259.2031 Q286.5938,259 286.0313,259 Q285.3281,259 284.7344,259.2813 Q284.1563,259.5625 283.7031,260.1875 Q283.25,260.8125 283.25,261.6719 L283.25,262.5938 Q283.25,263.625 284.0938,264.3125 Q284.9375,265 286.4375,265 Q287.3281,265 287.9531,264.7969 Q288.3125,264.6875 288.7188,264.3281 Q288.9844,264.125 289.125,264.0625 Q289.2656,264 289.4375,264 Q289.7656,264 290,264.2656 Q290.25,264.5156 290.25,264.875 Q290.25,265.2188 289.9063,265.625 Q289.4063,266.2188 288.6094,266.5469 Q287.5625,267 286.2813,267 Q284.7813,267 283.5781,266.4063 Q282.6094,265.9375 281.9219,264.9219 Q281.25,263.9063 281.25,262.7031 L281.25,261.6094 Q281.25,260.3594 281.8438,259.2656 Q282.4531,258.1719 283.5,257.5938 Q284.5625,257 285.75,257 Q286.4688,257 287.0938,257.25 Q287.7188,257.5 288.25,258 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="102" x="306.75" y="267.2285">StoreRepository</text><line style="stroke:#181818;stroke-width:0.5;" x1="239.5" x2="443.5" y1="277.5" y2="277.5"/><line style="stroke:#181818;stroke-width:0.5;" x1="239.5" x2="443.5" y1="285.5" y2="285.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="79" x="244.5" y="304.0332">+getStores()</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="194" x="244.5" y="321.6426">+createStore(createstoreDTO)</text></g><!--MD5=[b071f04f269d6c8381fbf3b952d7395d]
+class LocationRepository--><g id="elem_LocationRepository"><rect codeLine="22" fill="#F1F1F1" height="65.6094" id="LocationRepository" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="154" x="811.5" y="254"/><ellipse cx="826.5" cy="270" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M828.5,266.5 Q828.7031,266 828.9375,265.75 Q829.1719,265.5 829.4375,265.5 Q829.9063,265.5 830.2031,265.7813 Q830.5,266.0625 830.5,266.7188 L830.5,268.2813 Q830.5,268.9375 830.2188,269.2188 Q829.9375,269.5 829.5,269.5 Q829.1094,269.5 828.8594,269.3281 Q828.6094,269.1563 828.5,268.7031 Q828.4531,268.3906 828.2813,268.2188 Q827.9688,267.8906 827.4063,267.7031 Q826.8438,267.5 826.2813,267.5 Q825.5781,267.5 824.9844,267.7813 Q824.4063,268.0625 823.9531,268.6875 Q823.5,269.3125 823.5,270.1719 L823.5,271.0938 Q823.5,272.125 824.3438,272.8125 Q825.1875,273.5 826.6875,273.5 Q827.5781,273.5 828.2031,273.2969 Q828.5625,273.1875 828.9688,272.8281 Q829.2344,272.625 829.375,272.5625 Q829.5156,272.5 829.6875,272.5 Q830.0156,272.5 830.25,272.7656 Q830.5,273.0156 830.5,273.375 Q830.5,273.7188 830.1563,274.125 Q829.6563,274.7188 828.8594,275.0469 Q827.8125,275.5 826.5313,275.5 Q825.0313,275.5 823.8281,274.9063 Q822.8594,274.4375 822.1719,273.4219 Q821.5,272.4063 821.5,271.2031 L821.5,270.1094 Q821.5,268.8594 822.0938,267.7656 Q822.7031,266.6719 823.75,266.0938 Q824.8125,265.5 826,265.5 Q826.7188,265.5 827.3438,265.75 Q827.9688,266 828.5,266.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="122" x="840.5" y="275.7285">LocationRepository</text><line style="stroke:#181818;stroke-width:0.5;" x1="812.5" x2="964.5" y1="286" y2="286"/><line style="stroke:#181818;stroke-width:0.5;" x1="812.5" x2="964.5" y1="294" y2="294"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="99" x="817.5" y="312.5332">+getLocations()</text></g><!--MD5=[58f7934b2f143ffa1363800bd48f6f13]
+class StoreMapper--><g id="elem_StoreMapper"><rect codeLine="25" fill="#F1F1F1" height="65.6094" id="StoreMapper" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="193" x="512" y="254"/><ellipse cx="563.25" cy="270" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M565.25,266.5 Q565.4531,266 565.6875,265.75 Q565.9219,265.5 566.1875,265.5 Q566.6563,265.5 566.9531,265.7813 Q567.25,266.0625 567.25,266.7188 L567.25,268.2813 Q567.25,268.9375 566.9688,269.2188 Q566.6875,269.5 566.25,269.5 Q565.8594,269.5 565.6094,269.3281 Q565.3594,269.1563 565.25,268.7031 Q565.2031,268.3906 565.0313,268.2188 Q564.7188,267.8906 564.1563,267.7031 Q563.5938,267.5 563.0313,267.5 Q562.3281,267.5 561.7344,267.7813 Q561.1563,268.0625 560.7031,268.6875 Q560.25,269.3125 560.25,270.1719 L560.25,271.0938 Q560.25,272.125 561.0938,272.8125 Q561.9375,273.5 563.4375,273.5 Q564.3281,273.5 564.9531,273.2969 Q565.3125,273.1875 565.7188,272.8281 Q565.9844,272.625 566.125,272.5625 Q566.2656,272.5 566.4375,272.5 Q566.7656,272.5 567,272.7656 Q567.25,273.0156 567.25,273.375 Q567.25,273.7188 566.9063,274.125 Q566.4063,274.7188 565.6094,275.0469 Q564.5625,275.5 563.2813,275.5 Q561.7813,275.5 560.5781,274.9063 Q559.6094,274.4375 558.9219,273.4219 Q558.25,272.4063 558.25,271.2031 L558.25,270.1094 Q558.25,268.8594 558.8438,267.7656 Q559.4531,266.6719 560.5,266.0938 Q561.5625,265.5 562.75,265.5 Q563.4688,265.5 564.0938,265.75 Q564.7188,266 565.25,266.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="82" x="583.75" y="275.7285">StoreMapper</text><line style="stroke:#181818;stroke-width:0.5;" x1="513" x2="704" y1="286" y2="286"/><line style="stroke:#181818;stroke-width:0.5;" x1="513" x2="704" y1="294" y2="294"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="181" x="518" y="312.5332">+MapStore(createstoreDTO)</text></g><!--MD5=[0d8ffd9bbffadac007162b5eee8ef3be]
+class StoreDto--><g id="elem_StoreDto"><rect codeLine="29" fill="#F1F1F1" height="136.0469" id="StoreDto" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="125" x="7" y="219"/><ellipse cx="38.65" cy="235" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M40.65,231.5 Q40.8531,231 41.0875,230.75 Q41.3219,230.5 41.5875,230.5 Q42.0563,230.5 42.3531,230.7813 Q42.65,231.0625 42.65,231.7188 L42.65,233.2813 Q42.65,233.9375 42.3688,234.2188 Q42.0875,234.5 41.65,234.5 Q41.2594,234.5 41.0094,234.3281 Q40.7594,234.1563 40.65,233.7031 Q40.6031,233.3906 40.4313,233.2188 Q40.1188,232.8906 39.5563,232.7031 Q38.9938,232.5 38.4313,232.5 Q37.7281,232.5 37.1344,232.7813 Q36.5563,233.0625 36.1031,233.6875 Q35.65,234.3125 35.65,235.1719 L35.65,236.0938 Q35.65,237.125 36.4938,237.8125 Q37.3375,238.5 38.8375,238.5 Q39.7281,238.5 40.3531,238.2969 Q40.7125,238.1875 41.1188,237.8281 Q41.3844,237.625 41.525,237.5625 Q41.6656,237.5 41.8375,237.5 Q42.1656,237.5 42.4,237.7656 Q42.65,238.0156 42.65,238.375 Q42.65,238.7188 42.3063,239.125 Q41.8063,239.7188 41.0094,240.0469 Q39.9625,240.5 38.6813,240.5 Q37.1813,240.5 35.9781,239.9063 Q35.0094,239.4375 34.3219,238.4219 Q33.65,237.4063 33.65,236.2031 L33.65,235.1094 Q33.65,233.8594 34.2438,232.7656 Q34.8531,231.6719 35.9,231.0938 Q36.9625,230.5 38.15,230.5 Q38.8688,230.5 39.4938,230.75 Q40.1188,231 40.65,231.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="56" x="56.35" y="240.7285">StoreDto</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="131" y1="251" y2="251"/><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="131" y1="259" y2="259"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="83" x="13" y="277.5332">+getStoreId()</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="113" x="13" y="295.1426">+getDesignation()</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="79" x="13" y="312.752">+getPhone()</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="72" x="13" y="330.3613">+getEmail()</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92" x="13" y="347.9707">+getLocation()</text></g><!--MD5=[4f1f3706c1a355a8488e154afcaed5df]
+class Location--><g id="elem_Location"><rect codeLine="37" fill="#F1F1F1" height="65.6094" id="Location" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="110" x="750.5" y="433"/><ellipse cx="776.3" cy="449" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M778.3,445.5 Q778.5031,445 778.7375,444.75 Q778.9719,444.5 779.2375,444.5 Q779.7063,444.5 780.0031,444.7813 Q780.3,445.0625 780.3,445.7188 L780.3,447.2813 Q780.3,447.9375 780.0188,448.2188 Q779.7375,448.5 779.3,448.5 Q778.9094,448.5 778.6594,448.3281 Q778.4094,448.1563 778.3,447.7031 Q778.2531,447.3906 778.0813,447.2188 Q777.7688,446.8906 777.2063,446.7031 Q776.6438,446.5 776.0813,446.5 Q775.3781,446.5 774.7844,446.7813 Q774.2063,447.0625 773.7531,447.6875 Q773.3,448.3125 773.3,449.1719 L773.3,450.0938 Q773.3,451.125 774.1438,451.8125 Q774.9875,452.5 776.4875,452.5 Q777.3781,452.5 778.0031,452.2969 Q778.3625,452.1875 778.7688,451.8281 Q779.0344,451.625 779.175,451.5625 Q779.3156,451.5 779.4875,451.5 Q779.8156,451.5 780.05,451.7656 Q780.3,452.0156 780.3,452.375 Q780.3,452.7188 779.9563,453.125 Q779.4563,453.7188 778.6594,454.0469 Q777.6125,454.5 776.3313,454.5 Q774.8313,454.5 773.6281,453.9063 Q772.6594,453.4375 771.9719,452.4219 Q771.3,451.4063 771.3,450.2031 L771.3,449.1094 Q771.3,447.8594 771.8938,446.7656 Q772.5031,445.6719 773.55,445.0938 Q774.6125,444.5 775.8,444.5 Q776.5188,444.5 777.1438,444.75 Q777.7688,445 778.3,445.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="54" x="792.7" y="454.7285">Location</text><line style="stroke:#181818;stroke-width:0.5;" x1="751.5" x2="859.5" y1="465" y2="465"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="98" x="756.5" y="483.5332">+String location</text><line style="stroke:#181818;stroke-width:0.5;" x1="751.5" x2="859.5" y1="490.6094" y2="490.6094"/></g><!--MD5=[172b486dfa9648d57581ea8be20cc739]
+class CreateStoreController--><g id="elem_CreateStoreController"><rect codeLine="43" fill="#F1F1F1" height="118.4375" id="CreateStoreController" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="206" x="455.5" y="7"/><ellipse cx="486.25" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M488.25,19.5 Q488.4531,19 488.6875,18.75 Q488.9219,18.5 489.1875,18.5 Q489.6563,18.5 489.9531,18.7813 Q490.25,19.0625 490.25,19.7188 L490.25,21.2813 Q490.25,21.9375 489.9688,22.2188 Q489.6875,22.5 489.25,22.5 Q488.8594,22.5 488.6094,22.3281 Q488.3594,22.1563 488.25,21.7031 Q488.2031,21.3906 488.0313,21.2188 Q487.7188,20.8906 487.1563,20.7031 Q486.5938,20.5 486.0313,20.5 Q485.3281,20.5 484.7344,20.7813 Q484.1563,21.0625 483.7031,21.6875 Q483.25,22.3125 483.25,23.1719 L483.25,24.0938 Q483.25,25.125 484.0938,25.8125 Q484.9375,26.5 486.4375,26.5 Q487.3281,26.5 487.9531,26.2969 Q488.3125,26.1875 488.7188,25.8281 Q488.9844,25.625 489.125,25.5625 Q489.2656,25.5 489.4375,25.5 Q489.7656,25.5 490,25.7656 Q490.25,26.0156 490.25,26.375 Q490.25,26.7188 489.9063,27.125 Q489.4063,27.7188 488.6094,28.0469 Q487.5625,28.5 486.2813,28.5 Q484.7813,28.5 483.5781,27.9063 Q482.6094,27.4375 481.9219,26.4219 Q481.25,25.4063 481.25,24.2031 L481.25,23.1094 Q481.25,21.8594 481.8438,20.7656 Q482.4531,19.6719 483.5,19.0938 Q484.5625,18.5 485.75,18.5 Q486.4688,18.5 487.0938,18.75 Q487.7188,19 488.25,19.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="139" x="503.75" y="28.7285">CreateStoreController</text><line style="stroke:#181818;stroke-width:0.5;" x1="456.5" x2="660.5" y1="39" y2="39"/><line style="stroke:#181818;stroke-width:0.5;" x1="456.5" x2="660.5" y1="47" y2="47"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="99" x="461.5" y="65.5332">+getLocations()</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="194" x="461.5" y="83.1426">+createStore(createstoreDTO)</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="79" x="461.5" y="100.752">+getStores()</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="120" x="461.5" y="118.3613">+validateStore(obj)</text></g><!--MD5=[23940b947749002154d9bf65b70b35f7]
+class CreateStoreUI--><g id="elem_CreateStoreUI"><rect codeLine="50" fill="#F1F1F1" height="48" id="CreateStoreUI" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="121" x="203" y="42"/><ellipse cx="218" cy="58" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M220,54.5 Q220.2031,54 220.4375,53.75 Q220.6719,53.5 220.9375,53.5 Q221.4063,53.5 221.7031,53.7813 Q222,54.0625 222,54.7188 L222,56.2813 Q222,56.9375 221.7188,57.2188 Q221.4375,57.5 221,57.5 Q220.6094,57.5 220.3594,57.3281 Q220.1094,57.1563 220,56.7031 Q219.9531,56.3906 219.7813,56.2188 Q219.4688,55.8906 218.9063,55.7031 Q218.3438,55.5 217.7813,55.5 Q217.0781,55.5 216.4844,55.7813 Q215.9063,56.0625 215.4531,56.6875 Q215,57.3125 215,58.1719 L215,59.0938 Q215,60.125 215.8438,60.8125 Q216.6875,61.5 218.1875,61.5 Q219.0781,61.5 219.7031,61.2969 Q220.0625,61.1875 220.4688,60.8281 Q220.7344,60.625 220.875,60.5625 Q221.0156,60.5 221.1875,60.5 Q221.5156,60.5 221.75,60.7656 Q222,61.0156 222,61.375 Q222,61.7188 221.6563,62.125 Q221.1563,62.7188 220.3594,63.0469 Q219.3125,63.5 218.0313,63.5 Q216.5313,63.5 215.3281,62.9063 Q214.3594,62.4375 213.6719,61.4219 Q213,60.4063 213,59.2031 L213,58.1094 Q213,56.8594 213.5938,55.7656 Q214.2031,54.6719 215.25,54.0938 Q216.3125,53.5 217.5,53.5 Q218.2188,53.5 218.8438,53.75 Q219.4688,54 220,54.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="89" x="232" y="63.7285">CreateStoreUI</text><line style="stroke:#181818;stroke-width:0.5;" x1="204" x2="323" y1="74" y2="74"/><line style="stroke:#181818;stroke-width:0.5;" x1="204" x2="323" y1="82" y2="82"/></g><!--MD5=[b4d3d50c0abf08df45181fececb9f04d]
+class Store--><g id="elem_Store"><rect fill="#F1F1F1" height="48" id="Store" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="66" x="308.5" y="442"/><ellipse cx="323.5" cy="458" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M325.5,454.5 Q325.7031,454 325.9375,453.75 Q326.1719,453.5 326.4375,453.5 Q326.9063,453.5 327.2031,453.7813 Q327.5,454.0625 327.5,454.7188 L327.5,456.2813 Q327.5,456.9375 327.2188,457.2188 Q326.9375,457.5 326.5,457.5 Q326.1094,457.5 325.8594,457.3281 Q325.6094,457.1563 325.5,456.7031 Q325.4531,456.3906 325.2813,456.2188 Q324.9688,455.8906 324.4063,455.7031 Q323.8438,455.5 323.2813,455.5 Q322.5781,455.5 321.9844,455.7813 Q321.4063,456.0625 320.9531,456.6875 Q320.5,457.3125 320.5,458.1719 L320.5,459.0938 Q320.5,460.125 321.3438,460.8125 Q322.1875,461.5 323.6875,461.5 Q324.5781,461.5 325.2031,461.2969 Q325.5625,461.1875 325.9688,460.8281 Q326.2344,460.625 326.375,460.5625 Q326.5156,460.5 326.6875,460.5 Q327.0156,460.5 327.25,460.7656 Q327.5,461.0156 327.5,461.375 Q327.5,461.7188 327.1563,462.125 Q326.6563,462.7188 325.8594,463.0469 Q324.8125,463.5 323.5313,463.5 Q322.0313,463.5 320.8281,462.9063 Q319.8594,462.4375 319.1719,461.4219 Q318.5,460.4063 318.5,459.2031 L318.5,458.1094 Q318.5,456.8594 319.0938,455.7656 Q319.7031,454.6719 320.75,454.0938 Q321.8125,453.5 323,453.5 Q323.7188,453.5 324.3438,453.75 Q324.9688,454 325.5,454.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="34" x="337.5" y="463.7285">Store</text><line style="stroke:#181818;stroke-width:0.5;" x1="309.5" x2="373.5" y1="474" y2="474"/><line style="stroke:#181818;stroke-width:0.5;" x1="309.5" x2="373.5" y1="482" y2="482"/></g><!--MD5=[fff48e9c385a875a0ec7f6b68c295159]
+link Repositories to Repositories--><g id="link_Repositories_Repositories"><path codeLine="53" d="M996.78,46.82 C1016.98,48.84 1031.5,55.23 1031.5,66 C1031.5,75.84 1019.37,82.03 1001.86,84.56 " fill="none" id="Repositories-to-Repositories" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="996.78,85.18,1006.1954,88.0696,1001.7438,84.5792,1005.2341,80.1275,996.78,85.18" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="49" x="1037.5" y="71.4951">instance</text></g><!--MD5=[139de9e03af0ca3717dbc7106ad7c386]
+link CreateStoreUI to CreateStoreController--><g id="link_CreateStoreUI_CreateStoreController"><path codeLine="55" d="M324.1,66 C344.33,66 361.83,66 361.83,66 C361.83,66 425.21,66 450.21,66 " fill="none" id="CreateStoreUI-to-CreateStoreController" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="455.42,66,446.42,62,450.42,66,446.42,70,455.42,66" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[8813837b03af01e700313822390c23ef]
+link CreateStoreUI to StoreDto--><g id="link_CreateStoreUI_StoreDto"><path codeLine="56" d="M236.18,90.12 C205.36,116.19 159.5,155 159.5,155 C159.5,155 139.53,184.07 118.41,214.82 " fill="none" id="CreateStoreUI-to-StoreDto" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="115.55,218.96,123.9366,213.7962,118.376,214.8352,117.3369,209.2746,115.55,218.96" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[db32c9b4c5971398a7b40a8b47bd7901]
+link CreateStoreController to Repositories--><g id="link_CreateStoreController_Repositories"><path codeLine="58" d="M661.74,66 C704.68,66 754.41,66 797.26,66 " fill="none" id="CreateStoreController-to-Repositories" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="802.45,66,793.45,62,797.45,66,793.45,70,802.45,66" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="67" x="698.5" y="59.4951">repositories</text></g><!--MD5=[0b628bc90f6b45c3d0f8dffd39dec035]
+link CreateStoreController to Location--><g id="link_CreateStoreController_Location"><path codeLine="61" d="M621.44,125.33 C667.69,168.2 722.5,219 722.5,219 C722.5,219 769.85,359.34 793.02,428.02 " fill="none" id="CreateStoreController-to-Location" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="794.65,432.84,795.5633,423.0336,793.0517,428.1023,787.983,425.5908,794.65,432.84" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[8c503d67b72d9f4589b8670ff1d02033]
+link CreateStoreController to Store--><g id="link_CreateStoreController_Store"><path codeLine="62" d="M455.25,95.57 C362.4,121.27 240.5,155 240.5,155 C240.5,155 221.5,219 221.5,219 C221.5,219 221.5,355 221.5,355 C221.5,355 277.04,405.91 312.55,438.46 " fill="none" id="CreateStoreController-to-Store" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="316.34,441.94,312.399,432.914,312.6507,438.5653,306.9994,438.8169,316.34,441.94" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[cf5611596108f9fbcde9a55e8cee6b86]
+link CreateStoreController to LocationRepository--><g id="link_CreateStoreController_LocationRepository"><path codeLine="64" d="M661.74,121.73 C695.5,139.63 724.5,155 724.5,155 C724.5,155 795.77,211.93 844.34,250.73 " fill="none" id="CreateStoreController-to-LocationRepository" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="848.38,253.95,843.8627,245.1982,844.4798,250.8213,838.8568,251.4385,848.38,253.95" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="111" x="764.5" y="177.4951">LocationRepository</text></g><!--MD5=[79890801235207fd879a3e1fdd166aca]
+link CreateStoreController to StoreRepository--><g id="link_CreateStoreController_StoreRepository"><path codeLine="65" d="M500.92,125.11 C464.69,161.67 418.68,208.11 385.41,241.69 " fill="none" id="CreateStoreController-to-StoreRepository" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="381.82,245.31,391.0052,241.7559,385.3484,241.7673,385.337,236.1105,381.82,245.31" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="93" x="469.5" y="177.4951">StoreRepository</text></g><!--MD5=[3351821075dace961ea3f11f820271e1]
+link Repositories to LocationRepository--><g id="link_Repositories_LocationRepository"><path codeLine="67" d="M912.07,125.21 C915.6,141.57 918.5,155 918.5,155 C918.5,155 918.5,189 918.5,189 C918.5,189 908.44,221.54 899.97,248.93 " fill="none" id="Repositories-to-LocationRepository" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="898.41,253.97,904.8783,246.543,899.8794,249.1908,897.2316,244.1919,898.41,253.97" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="892.7321" y="243.0792">1</text></g><!--MD5=[83a916c1023c7b8a5c4a5590a5880de8]
+link Repositories to StoreRepository--><g id="link_Repositories_StoreRepository"><path codeLine="68" d="M889.02,125.14 C883.35,156.56 877.5,189 877.5,189 C877.5,189 494.5,219 494.5,219 C494.5,219 469.05,230.15 438.91,243.35 " fill="none" id="Repositories-to-StoreRepository" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="434.03,245.48,443.8786,245.5485,438.6131,243.4812,440.6805,238.2156,434.03,245.48" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="441.7756" y="234.7844">1</text></g><!--MD5=[8e554aa4332c0635ba1122ffd91c235f]
+link LocationRepository to Location--><g id="link_LocationRepository_Location"><path codeLine="70" d="M873.47,320.05 C859.18,350.53 837.69,396.34 822.72,428.28 " fill="none" id="LocationRepository-to-Location" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="820.56,432.89,827.9918,426.4272,822.6752,428.3594,820.7429,423.0428,820.56,432.89" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="49" x="842.5" y="399.4951">Location</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="863.0535" y="341.1821">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="818.1505" y="421.9827">*</text></g><!--MD5=[7a4e668c7c3ce870245e74a122912985]
+link StoreMapper to Store--><g id="link_StoreMapper_Store"><path codeLine="71" d="M560.15,320.05 C508.07,354.58 426.32,408.77 378.93,440.19 " fill="none" id="StoreMapper-to-Store" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="374.73,442.97,384.4399,441.3213,378.8946,440.2031,380.0128,434.6578,374.73,442.97" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="31" x="459.5" y="399.4951">Store</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="543.5902" y="341.1821">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="382.3056" y="434.1014">1</text></g><!--MD5=[cf1da186bd279f74bedd03cc758ce0e4]
+link StoreMapper to StoreDto--><g id="link_StoreMapper_StoreDto"><path codeLine="72" d="M544.13,253.86 C479.36,220.52 389,174 389,174 C389,174 248,174 248,174 C248,174 187.09,212.56 136.43,244.63 " fill="none" id="StoreMapper-to-StoreDto" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="132.18,247.32,141.923,245.8799,136.403,244.643,137.6399,239.1231,132.18,247.32" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="129" x="254" y="169.4951">(Location, Designation</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="139" x="249" y="185.8467">, Phone, Email, StoreId)</text></g><!--MD5=[5e1b7b39059e74e3120aeb09b6e83b23]
+link StoreRepository to Store--><g id="link_StoreRepository_Store"><path codeLine="73" d="M341.5,328.61 C341.5,361.66 341.5,407.47 341.5,436.67 " fill="none" id="StoreRepository-to-Store" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="341.5,441.92,345.5,432.92,341.5,436.92,337.5,432.92,341.5,441.92" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="31" x="342.5" y="399.4951">Store</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="333.9203" y="350.3328">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="335.8594" y="431.2397">*</text></g><!--MD5=[b74c41a5cf7ec44da154fd9bbcaa9096]
+link StoreRepository to StoreMapper--><g id="link_StoreRepository_StoreMapper"><path codeLine="74" d="M444.73,287 C465.02,287 486.3,287 506.55,287 " fill="none" id="StoreRepository-to-StoreMapper" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="511.67,287,502.67,283,506.67,287,502.67,291,511.67,287" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="31" x="462.75" y="280.4951">Store</text></g><!--MD5=[2491e717968b30ac4e8992d8599b1929]
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+
+skinparam classAttributeIconSize 0
+
+'left to right direction
+
+class Repositories{
+-Repositories()
++getInstance() : Repositories
++getStoreRepository()
++getLocationRepository()
+}
+
+class StoreRepository {
++ getStores()
++ createStore(createstoreDTO)
+}
+class LocationRepository {
++getLocations()
+}
+class StoreMapper {
++MapStore(createstoreDTO)
+}
+
+class StoreDto{
++getStoreId()
++getDesignation()
++getPhone()
++getEmail()
++getLocation()
+}
+
+class Location{
++String location
+}
+
+
+
+class CreateStoreController {
+    + getLocations()
+    + createStore(createstoreDTO)
+    + getStores()
+    + validateStore(obj)
+}
+
+class CreateStoreUI {
+}
+
+Repositories -> Repositories : instance
+
+CreateStoreUI .> CreateStoreController
+CreateStoreUI .> StoreDto
+
+CreateStoreController .> Repositories : repositories
+
+
+CreateStoreController..> Location
+CreateStoreController ..> Store
+
+CreateStoreController ..> LocationRepository : LocationRepository
+CreateStoreController ..> StoreRepository : StoreRepository
+
+Repositories -> "1" LocationRepository
+Repositories -> "1" StoreRepository
+
+LocationRepository "1" - -> "*" Location : Location
+StoreMapper "1" - -> "1" Store : Store
+StoreMapper .> StoreDto : (Location, Designation\n, Phone, Email, StoreId)
+StoreRepository "1" - -> "*" Store : Store
+StoreRepository .> StoreMapper : Store
+
+
+@enduml
+
+@startuml
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+
+skinparam classAttributeIconSize 0
+
+
+class Repositories{
+-Repositories()
++getInstance() : Repositories
++getStoreRepository()
++getLocationRepository()
+}
+
+class StoreRepository {
++ getStores()
++ createStore(createstoreDTO)
+}
+class LocationRepository {
++getLocations()
+}
+class StoreMapper {
++MapStore(createstoreDTO)
+}
+
+class StoreDto{
++getStoreId()
++getDesignation()
++getPhone()
++getEmail()
++getLocation()
+}
+
+class Location{
++String location
+}
+
+
+
+class CreateStoreController {
+    + getLocations()
+    + createStore(createstoreDTO)
+    + getStores()
+    + validateStore(obj)
+}
+
+class CreateStoreUI {
+}
+
+Repositories -> Repositories : instance
+
+CreateStoreUI .> CreateStoreController
+CreateStoreUI .> StoreDto
+
+CreateStoreController .> Repositories : repositories
+
+
+CreateStoreController..> Location
+CreateStoreController ..> Store
+
+CreateStoreController ..> LocationRepository : LocationRepository
+CreateStoreController ..> StoreRepository : StoreRepository
+
+Repositories -> "1" LocationRepository
+Repositories -> "1" StoreRepository
+
+LocationRepository "1" - -> "*" Location : Location
+StoreMapper "1" - -> "1" Store : Store
+StoreMapper .> StoreDto : (Location, Designation\n, Phone, Email, StoreId)
+StoreRepository "1" - -> "*" Store : Store
+StoreRepository .> StoreMapper : Store
+
+
+@enduml
+
+PlantUML version 1.2022.12(Sun Oct 23 19:12:26 BST 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>

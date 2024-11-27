@@ -1,0 +1,29 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant "agency\n:Agency" as Agency
+participant "announcement\n:Announcement" as Task
+
+autonumber 25
+-> Agency: publishAnnouncement()
+
+autonumber 25.1
+activate Agency
+    group Publish Announcement
+
+        Agency -> Task**: publish()
+        Agency -> Agency: addAnnouncement (announcement)
+
+
+            Agency -> Agency: validateAnnouncement(announcement)
+
+    end
+
+    autonumber 26
+    <-- Agency : announcement
+deactivate Agency
+
+
+@enduml

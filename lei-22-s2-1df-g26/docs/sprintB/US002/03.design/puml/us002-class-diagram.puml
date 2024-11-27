@@ -1,0 +1,200 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+
+
+skinparam classAttributeIconSize 0
+
+class ApplicationSession
+{
++ static getInstance()
++ getCurrentSession()
+}
+
+class UserSession
+{
++ getUserEmail()
+}
+
+class Address {
+-street
+-city
+-district
+-state
+-zipCode
+
++Adress(street, city, district, state, zipCode)
+}
+
+class Commission {
+-description
+}
+
+class Agent {
+-String name
+-String phoneNumber
+-Passport passport
+-Location address
+-String taxNumber
+
++Agent()
+
+}
+
+class Announcement {
+-String publicationDate
+-Location location
+-Land land
+-Apartment apartment
+-House house
+-Commission commission
+-SaleRequest saleRequest
+-RentRequest rentRequest
+-PropertyCategory propertyCategory
+-AnnouncementCategory announcementCategory
+-Agent agent
+
++Announcement()
+}
+
+class Agency {
+-String id
+-List<Announcement> announcements
+-List<Agent> agents
+-String email
+-String phoneNumber
+-Location address
+
+-addAnnouncement(announcement)
+-validateAnnouncement(announcement)
+-employs(agent)
++Agency()
++publishLandSaleAnnouncement()
++publishLandRentAnnouncement()
++publishApartmentSaleAnnouncement()
++publishApartmentRentAnnouncement()
++publishHouseSaleAnnouncement()
++publishHouseRentAnnouncement()
+-validateAnnouncement()
+-validateAgent()
+
+}
+
+class PublishAnnouncementUI {
+
+
+}
+
+class PublishAnnouncementController {
++PublishAnnouncementController(AnnouncementCategoryRepository, PropertyCategoryRepository, AgencyRepository)
++publishLandSaleAnnouncement()
++publishLandRentAnnouncement()
++publishApartmentSaleAnnouncement()
++publishApartmentRentAnnouncement()
++publishHouseSaleAnnouncement()
++publishHouseRentAnnouncement()
+-getAgencyRepository()
+-getPropertyCategoryRepository()
+-getAnnouncementCategoryRepository()
+-getAuthenticationRepository()
+-getAnnouncementCategoryByDescription(announcementCategoryDescription)
+-getPropertyCategoryByDescription(propertyCategoryDescription)
+-getAgencyByDescription(agencyDescription)
+-getAgentFromSession()
+}
+
+class Repositories {
+-Repositories()
++getInstance() : Repositories
++getAnnouncementCategoryRepository()
++getPropertyCategoryRepository()
++getAgencyRepository()
+}
+
+class AgencyRepository {
++getAgencyByDesignation()
+}
+
+class PropertyCategoryRepository {
++getPropertyCategoryByDescription()
+-add()
+-validatePropertyCategory()
+-getPropertyCategoryList()
+}
+
+class AnnouncementCategoryRepository {
++getAnnouncementCategoryByDescription(announcementCategoryDescription)
+-add()
+-validateAnnouncementCategory()
+-getAnnouncementCategoryList()
+}
+
+
+class PropertyCategory {
+-String description
+
++PropertyCategory(description)
+}
+
+class AnnouncementCategory {
+-String description
+
++AnnouncementCategory(description)
+}
+
+class SaleRequest {
+-Double requestedPrice
+}
+
+class Photography {
+-List<Photography> photographies
+}
+
+note right of PropertyCategoryRepository {
+- used for displaying property category list
+}
+
+note bottom of AnnouncementCategoryRepository {
+- used for displaying announcement category list
+}
+
+PublishAnnouncementUI .> PublishAnnouncementController
+
+PublishAnnouncementController .> Repositories : repositories
+PublishAnnouncementController .> PropertyCategoryRepository
+PublishAnnouncementController .> AnnouncementCategoryRepository
+PublishAnnouncementController .> AgencyRepository
+PublishAnnouncementController ..> AnnouncementCategory
+PublishAnnouncementController ....> PropertyCategory
+PublishAnnouncementController .> ApplicationSession
+PublishAnnouncementController ..> UserSession
+
+Repositories --> "1" PropertyCategoryRepository
+Repositories --> "1" AnnouncementCategoryRepository
+Repositories --> "1" AgencyRepository
+
+PropertyCategoryRepository "1" -> "3" PropertyCategory
+
+AnnouncementCategoryRepository "1" --> "2" AnnouncementCategory
+
+AgencyRepository "1" --> "*" Agency
+
+Agency "1" -> "*" Agent : employs
+Agency "1" --> "*" Announcement
+
+Announcement "*" --> "1" AnnouncementCategory
+Announcement "*" --> "1" PropertyCategory
+Announcement -> Agent : published by
+Announcement "*" --> "1" Address
+Announcement <-- SaleRequest
+Announcement <-- Commission
+Announcement <-- Photography
+
+Agent "*" --> "1" Address
+
+ApplicationSession --> ApplicationSession : instance
+ApplicationSession --> UserSession
+
+@enduml

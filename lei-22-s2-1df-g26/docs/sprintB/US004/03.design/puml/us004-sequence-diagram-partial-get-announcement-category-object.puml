@@ -1,0 +1,37 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant ":RequestPropertyController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "announcementCategoryRepository:\nAnnouncementCategoryRepository" as AnnouncementCategoryRepository
+
+autonumber 15
+
+-> CTRL : getAnnouncementCategoryByDescription()
+
+autonumber 15.1
+activate CTRL
+    group Get Announcement Category Object
+
+        CTRL -> PLAT : getAnnouncementCategoryRepository()
+        activate PLAT
+
+        PLAT -> CTRL : announcementCategoryRepository
+        deactivate PLAT
+
+        CTRL -> AnnouncementCategoryRepository : getAnnouncementCategoryByDescription(announcementCategoryDescription)
+        activate AnnouncementCategoryRepository
+
+        AnnouncementCategoryRepository -> CTRL : announcementCategory
+        deactivate AnnouncementCategoryRepository
+
+    end
+    autonumber 16
+    <-- CTRL : announcementCategory
+    deactivate CTRL
+
+
+@enduml

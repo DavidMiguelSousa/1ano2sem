@@ -1,0 +1,132 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+title US004 - Domain Model
+
+class RegisteredUser {
+    - name
+    - email
+    - password
+}
+
+class Owner {
+}
+
+class TypeOfProperty {
+}
+
+note left of TypeOfProperty
+    - description
+        1 - land
+        2 - apartment
+        3 - house
+end note
+
+class TypeOfBusiness {
+}
+
+note right of TypeOfBusiness
+    - description
+        1 - sale
+        2 - rent
+end note
+
+class Announcement {
+    - publicationDate
+}
+
+class Land {
+    - area
+    - distanceFromCityCentre
+}
+
+class House {
+    - existenceOfBasement
+    - existenceOfInhabitableLoft
+    - sunExposure
+}
+
+class Apartment {
+    - numberOfBedrooms
+    - numberOfBathrooms
+    - numberOfParkingSpaces
+}
+
+class SaleRequest {
+    - requestedPrice
+}
+
+class RentRequest {
+    - monthlyRent
+    - contractDuration
+}
+
+class Agent {
+}
+
+class Employee {
+    - phoneNumber
+    - taxNumber
+}
+
+class Address {
+    - street
+    - zipCode
+}
+class City {
+}
+
+class District {
+}
+
+class State {
+}
+
+class Passport{
+    - passportNumber
+}
+
+class AvailableEquipment{
+    - centralHeating
+    - airConditioning
+}
+class Photographs{
+    - photographs
+}
+
+class Comission{
+}
+
+
+RegisteredUser <|- Owner
+RegisteredUser <|- Employee
+Employee <|- Agent
+Owner "1" -- "1" Agent : chooses >
+Agent "1" -- "0..*" Announcement : publishes >
+Announcement  <|-- SaleRequest
+Announcement  <|-- RentRequest
+Announcement  -- TypeOfBusiness
+TypeOfProperty  -  Land
+SaleRequest "1" -- "1" Land : of >
+RentRequest "1" -- "1" Land : of >
+Land <|- Apartment
+Apartment <|- House
+Address <|- District
+District <|- City
+City <|- State
+Announcement  *--  Address
+Employee "1" -- "1" Address
+Employee "1" --left-- "1" Passport
+Apartment  *-- AvailableEquipment
+Land  *-- Photographs
+Announcement  *--right Comission
+
+@enduml

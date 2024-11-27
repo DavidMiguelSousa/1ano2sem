@@ -1,0 +1,91 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+participant ":SystemRegisterController" as CTRL
+participant ":repositories" as RP
+participant "repositories\n:Repositories" as rRP
+participant "userRepository\n:UserRepository" as UserRepository
+
+group Register User
+
+autonumber 8
+
+        -> CTRL: registerUser(data)
+        activate CTRL
+
+    autonumber 8.1
+
+    alt successful operation
+
+        CTRL -> RP: getInstance()
+        activate RP
+
+        RP --> CTRL: repositories
+        deactivate RP
+
+        CTRL -> rRP: getUserRepository()
+        activate rRP
+
+        rRP --> CTRL: UserRepository
+        deactivate rRP
+
+        CTRL -> UserRepository: registerUser(data)
+        activate UserRepository
+
+        UserRepository -> UserRepository: validateData(data)
+        activate UserRepository
+
+       UserRepository --> CTRL: operation successful
+        deactivate UserRepository
+
+        deactivate UserRepository
+
+    autonumber 9
+
+        <-- CTRL: operation successful
+        deactivate CTRL
+
+        else unsuccessful operation
+
+        autonumber 8
+
+        -> CTRL: registerUser(data)
+                activate CTRL
+
+        autonumber 8.1
+
+        CTRL -> RP: getInstance()
+                activate RP
+
+                RP --> CTRL: repositories
+                deactivate RP
+
+                CTRL -> rRP: getUserRepository()
+                activate rRP
+
+                rRP --> CTRL: UserRepository
+                deactivate rRP
+
+                CTRL -> UserRepository: registerUser(data)
+                activate UserRepository
+
+                UserRepository -> UserRepository: validateData(data)
+                activate UserRepository
+
+               UserRepository --> CTRL: invalid data
+                deactivate UserRepository
+
+                deactivate UserRepository
+
+        autonumber 9
+                <-- CTRL: requests new data
+                deactivate CTRL
+
+end
+end
+
+@enduml

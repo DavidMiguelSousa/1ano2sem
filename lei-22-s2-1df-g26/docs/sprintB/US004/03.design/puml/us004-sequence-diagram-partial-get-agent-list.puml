@@ -1,0 +1,45 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant ":RequestAnnouncementController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "agencyRepository:\nAgencyRepository" as AgencyRepository
+
+autonumber 34
+
+-> CTRL : getAgentList(id)
+
+autonumber 34.1
+activate CTRL
+    group Get Agent List
+
+            CTRL -> RepositorySingleton : getInstance()
+            activate RepositorySingleton
+
+            RepositorySingleton --> CTRL: repositories
+            deactivate RepositorySingleton
+
+            CTRL -> PLAT : getAgencyRepository(id)
+            activate PLAT
+
+            PLAT --> CTRL: agencyRepository
+            deactivate PLAT
+
+            CTRL -> AgencyRepository : getAgentList(id)
+            activate AgencyRepository
+
+            AgencyRepository --> CTRL : agentList
+            deactivate AgencyRepository
+
+    end
+    autonumber 35
+    <-- CTRL : agentList
+    deactivate CTRL
+
+'hide footbox
+
+
+@enduml

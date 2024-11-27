@@ -1,0 +1,36 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant ":RequestAnnouncementController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "agencyRepository:\nAgencyRepository" as AgencyRepository
+
+autonumber 34
+
+-> CTRL : getAgencyByDesignation()
+
+autonumber 34.1
+activate CTRL
+    group Get Agency Object
+
+            CTRL -> PLAT : getAgencyRepository(id)
+            activate PLAT
+
+            PLAT --> CTRL: agenciesRepository
+            deactivate PLAT
+
+            CTRL -> AgencyRepository : getAgencyByDesignation(designation)
+            activate AgencyRepository
+
+            AgencyRepository --> CTRL : agency
+            deactivate AgencyRepository
+
+    end
+    autonumber 35
+    <-- CTRL : agency
+    deactivate CTRL
+
+@enduml

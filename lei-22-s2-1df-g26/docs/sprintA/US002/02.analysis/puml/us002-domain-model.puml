@@ -1,0 +1,90 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+title US002 - Domain Model
+
+class Agent {
+}
+
+class Announcement {
+    - commission
+    - publicationDate
+    - description:
+        1 - sale
+        2 - rent
+}
+
+class Address {
+-street
+-city
+-district
+-state
+-zipCode
+}
+
+class SaleRequest {
+    - requestedPrice
+}
+
+class TypeOfBusiness {
+}
+
+class TypeOfProperty {
+    - description:
+         1 - Land
+         2 - Apartment
+         3 - House
+}
+
+class Land {
+    - area
+    - distanceFromCityCentre
+    - photographs
+}
+
+class House {
+    - hasBasement
+    - hasInhabitableLoft
+    - sunExposure
+}
+
+class Apartment {
+    - numberOfBedrooms
+    - numberOfBathrooms
+    - numberOfParkingSpaces
+    - availableEquipment
+}
+
+ note left of TypeOfBusiness
+        - description:
+            1 - sale
+            2 - rent
+    end note
+
+    note right of TypeOfProperty
+            - description:
+                1 - land
+                2 - apartment
+                3 - house
+        end note
+
+Agent "1" -- "0..*" Announcement: registers >
+Announcement <|-- SaleRequest
+SaleRequest "1" -- "1" Land: of >
+TypeOfProperty - Land
+Land <|-- Apartment
+Apartment <|-- House
+Announcement -- Address
+Announcement - TypeOfBusiness
+
+
+@enduml

@@ -1,0 +1,168 @@
+@startuml
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+hide methods
+left to right direction
+hide circles
+skinparam classFontSize 19
+skinparam classAttributeIconSize 0
+
+skinparam class {
+    FontSize 16
+    BorderColor black
+}
+
+title Project Domain Model
+
+package User {
+    class UnregisteredUser
+    class RegisteredUser {
+        - name
+        - email
+        - password
+    }
+}
+
+package Workers {
+    class Employee {
+        - citizenCardNumber
+        - taxNumber
+        - phoneNumber
+    }
+    class SystemAdministrator
+    object Agent
+    object StoreManager
+    object StoreNetworkManager
+    Agent "*"-left- "1" Employee
+    StoreNetworkManager "*" -right- "1" Employee
+    StoreManager "*" -up- "1" Employee
+    SystemAdministrator "1" -down-- "*" Employee : registers >
+}
+
+package Client {
+    class Buyer
+    class Owner
+}
+
+RegisteredUser -down- Buyer
+RegisteredUser -down- Owner
+RegisteredUser -- Employee
+Agent "1" --- "*" Owner : contacts <
+
+package Business {
+    class Agency {
+        - designation
+        - email
+        - phoneNumber
+    }
+
+    class Announcement {
+        - commission
+        - publicationDate
+    }
+
+    class SaleRequest {
+        - requestedPrice
+    }
+
+    class RentRequest {
+        - monthlyRent
+        - contractDuration
+    }
+
+    class TypeOfBusiness {
+    }
+
+    note left of TypeOfBusiness
+        - description:
+            1 - sale
+            2 - rent
+    end note
+
+    class TypeOfProperty {
+    }
+
+    note left of TypeOfProperty
+        - description:
+            1 - land
+            2 - apartment
+            3 - house
+    end note
+
+    class Land {
+        - area
+        - distanceFromCityCentre
+        - photographs
+    }
+
+    class House {
+        - hasBasement
+        - hasInhabitableLoft
+        - sunExposure
+    }
+
+    class Apartment {
+        - numberOfBedrooms
+        - numberOfBathrooms
+        - numberOfParkingSpaces
+        - availableEquipment
+    }
+}
+
+class Item {
+name
+}
+
+class Category{
+}
+
+note bottom of Category
+    - description:
+        1 - state
+        2 - district
+        3 - city
+end note
+
+class System
+
+class Address {
+    - street
+    - city
+    - district
+    - state
+    - zipCode
+}
+
+Address "*" ---- "1" SystemAdministrator : creates <
+SystemAdministrator "1" -- Item: adds >
+Item "1" -- "1" Category : of >
+Item "*" -- "1" System : to >
+Employee -up- Agency
+Announcement -- Address
+
+Announcement -up- TypeOfBusiness
+Announcement <|-up- RentRequest
+Announcement <|-up- SaleRequest
+Land -up- Apartment
+Land -up- TypeOfProperty
+Apartment <|-left- House
+Announcement <|-right- Land
+Announcement "0..*" -right- "1" Agent : registers <
+UnregisteredUser "1" -up- "0..*" Announcement : lists >
+Announcement "0..*" -right- "1" Buyer: lists <
+
+class Role {
+}
+
+note bottom of Role
+    - description:
+        1 - agent
+        2 - storeManager
+        3 - storeNetworkManager
+end note
+
+Role -up- Employee
+@enduml

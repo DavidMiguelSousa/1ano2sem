@@ -1,0 +1,30 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+left to right direction
+
+actor "System Administrator" as SystemAdministrator
+actor "Unregistered User" as UnregisteredUser
+actor "Agent" as Agent
+actor "Owner" as Owner
+
+usecase "UC1 - Display listed properties" as UC1
+usecase "UC2 - Publish a sale announcement on the system" as UC2
+usecase "UC3 - Register a new employee" as UC3
+usecase "UC4 - Submit a request for listing a property sale or rent, choosing the responsible agent" as UC4
+usecase "UC5 - Register a store" as UC5
+usecase "UC6 - Specify states, districts and cities" as UC6
+usecase "UC7 - Register in the system to buy, sell or rent properties." as UC7
+
+UnregisteredUser --> UC1
+Agent --> UC2
+SystemAdministrator --> UC3
+Owner --> UC4
+SystemAdministrator --> UC5
+SystemAdministrator --> UC6
+UnregisteredUser --> UC7
+
+@enduml

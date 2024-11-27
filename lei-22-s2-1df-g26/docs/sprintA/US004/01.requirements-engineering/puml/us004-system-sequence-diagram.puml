@@ -1,0 +1,63 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+autonumber
+
+title System Sequence Diagram (SSD) - US004
+actor "Owner" as Owner
+participant ":System" as System
+
+activate Owner
+
+    Owner -> System : asks to submit a request for listing a property
+    activate System
+
+        System --> Owner : shows announcement  category list (sale or rental)
+    deactivate System
+
+    Owner -> System : selects sale or rental
+    activate System
+
+       System --> Owner : shows property category list (apartment, house or land)
+    deactivate System
+
+    Owner -> System : selects a category
+    activate System
+
+        System --> Owner : shows number of rooms list
+    deactivate System
+
+    Owner -> System : selects number of rooms
+    activate System
+
+       System --> Owner : requests information
+    deactivate System
+
+    Owner -> System : introduces requested information (property charactheristics, requested price, commission)
+    activate System
+
+        System --> Owner : shows list of all agencies
+    deactivate System
+
+    Owner -> System : chooses an agency from the list
+    activate System
+
+       System --> Owner : shows list of agents available that work on the selected agency
+    deactivate System
+
+    Owner -> System : chooses an agent from the list
+    activate System
+
+       System --> Owner : shows all information and agent confirmation
+    deactivate System
+
+    Owner -> System : confirms
+    activate System
+
+       System --> Owner : informs operatrion success
+    deactivate System
+
+
+
+@enduml
